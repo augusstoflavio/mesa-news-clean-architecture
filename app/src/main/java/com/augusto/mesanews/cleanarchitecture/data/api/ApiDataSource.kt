@@ -1,4 +1,4 @@
-package com.augusto.mesanews.cleanarchitecture.framework
+package com.augusto.mesanews.cleanarchitecture.data.api
 
 import com.augusto.mesanews.core.data.dataSource.RemoteDataSource
 import com.augusto.mesanews.core.domain.entity.Result
