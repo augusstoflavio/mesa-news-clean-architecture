@@ -1,10 +1,12 @@
 package com.augusto.mesanews.cleanarchitecture.data.api
 
+import com.augusto.mesanews.cleanarchitecture.data.api.service.AuthService
+import com.augusto.mesanews.cleanarchitecture.data.api.service.NewsService
 import com.augusto.mesanews.core.data.dataSource.RemoteDataSource
 import com.augusto.mesanews.core.domain.entity.Result
 import com.augusto.mesanews.core.domain.entity.News
 
-class ApiDataSource: RemoteDataSource {
+class ApiDataSource(authService: AuthService, newsService: NewsService): RemoteDataSource {
 
     override suspend fun getNews(currentPage: Int): Result<List<News>> {
         TODO("Not yet implemented")
