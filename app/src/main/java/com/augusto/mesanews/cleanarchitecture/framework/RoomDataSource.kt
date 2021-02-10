@@ -1,8 +1,8 @@
 package com.augusto.mesanews.cleanarchitecture.framework
 
-import com.augusto.mesanews.core.data.LocalDataSource
-import com.augusto.mesanews.core.data.Result
-import com.augusto.mesanews.core.domain.News
+import com.augusto.mesanews.core.data.dataSource.LocalDataSource
+import com.augusto.mesanews.core.domain.entity.Result
+import com.augusto.mesanews.core.domain.entity.News
 
 class RoomDataSource: LocalDataSource {
 

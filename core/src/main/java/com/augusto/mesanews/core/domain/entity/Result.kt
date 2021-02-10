@@ -1,4 +1,4 @@
-package com.augusto.mesanews.core.data
+package com.augusto.mesanews.core.domain.entity
 
 sealed class Result<out T> {
 

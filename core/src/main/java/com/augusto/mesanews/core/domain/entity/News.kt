@@ -1,4 +1,4 @@
-package com.augusto.mesanews.core.domain
+package com.augusto.mesanews.core.domain.entity
 
 import java.util.*
 
