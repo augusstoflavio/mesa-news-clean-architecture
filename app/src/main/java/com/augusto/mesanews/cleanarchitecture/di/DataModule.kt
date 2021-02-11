@@ -13,7 +13,7 @@ import org.koin.dsl.module
 val dataModule = module {
 
     single<RemoteDataSource> {
-        ApiDataSource()
+        ApiDataSource(get(), get())
     }
 
     single<LocalDataSource> {

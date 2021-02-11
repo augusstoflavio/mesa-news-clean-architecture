@@ -5,8 +5,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class SigninRequest(
-    @Json(name = "name")
-    var name: String,
     @Json(name = "email")
     var email: String,
+    @Json(name = "password")
+    var password: String,
 )
