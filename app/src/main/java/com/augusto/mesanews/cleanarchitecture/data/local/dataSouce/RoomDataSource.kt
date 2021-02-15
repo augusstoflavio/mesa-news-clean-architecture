@@ -1,10 +1,11 @@
-package com.augusto.mesanews.cleanarchitecture.data.local
+package com.augusto.mesanews.cleanarchitecture.data.local.dataSouce
 
+import com.augusto.mesanews.cleanarchitecture.data.local.RoomDataBase
 import com.augusto.mesanews.cleanarchitecture.data.local.helper.safeQuery
 import com.augusto.mesanews.cleanarchitecture.data.local.model.FavoriteNews
 import com.augusto.mesanews.core.data.dataSource.LocalDataSource
-import com.augusto.mesanews.core.domain.entity.Result
 import com.augusto.mesanews.core.domain.entity.News
+import com.augusto.mesanews.core.domain.entity.Result
 
 class RoomDataSource(val roomDataBase: RoomDataBase): LocalDataSource {
 
