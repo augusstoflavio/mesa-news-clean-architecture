@@ -1,6 +1,9 @@
 package com.augusto.mesanews.cleanarchitecture.di
 
+import androidx.room.Room
+import com.augusto.mesanews.cleanarchitecture.App
 import com.augusto.mesanews.cleanarchitecture.data.api.ApiDataSource
+import com.augusto.mesanews.cleanarchitecture.data.local.RoomDataBase
 import com.augusto.mesanews.cleanarchitecture.data.local.RoomDataSource
 import com.augusto.mesanews.core.data.dataSource.LocalDataSource
 import com.augusto.mesanews.core.data.dataSource.RemoteDataSource
@@ -12,12 +15,20 @@ import org.koin.dsl.module
 
 val dataModule = module {
 
+    single {
+        Room.databaseBuilder(
+            App.instance,
+            RoomDataBase::class.java,
+            "mesa-news"
+        ).build()
+    }
+
     single<RemoteDataSource> {
         ApiDataSource(get(), get())
     }
 
     single<LocalDataSource> {
-        RoomDataSource()
+        RoomDataSource(get())
     }
 
     single<AuthRepository> { AuthRepositoryImpl(get()) }
