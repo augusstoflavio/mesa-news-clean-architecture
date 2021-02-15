@@ -9,7 +9,9 @@ suspend fun <T: Any> safeCall(call: suspend () -> T): Result<T> {
         try {
             Result.Success(call.invoke())
         } catch (throwable: Throwable) {
-            Result.Failure(throwable)
+            Result.Failure(
+                Result.Error(throwable.message ?: "")
+            )
         }
     }
 }

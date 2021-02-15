@@ -23,7 +23,9 @@ class RoomDataSource(val roomDataBase: RoomDataBase): LocalDataSource {
             )
             return Result.Success(true)
         } catch (e: Exception) {
-            return Result.Failure(e)
+            return Result.Failure(
+                Result.Error(message = "Database error")
+            )
         }
     }
 }
