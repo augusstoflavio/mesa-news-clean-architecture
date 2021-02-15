@@ -1,15 +1,13 @@
 package com.augusto.mesanews.cleanarchitecture.data.api
 
+import com.augusto.mesanews.cleanarchitecture.data.api.helper.safeCall
 import com.augusto.mesanews.cleanarchitecture.data.api.request.SigninRequest
 import com.augusto.mesanews.cleanarchitecture.data.api.request.SignupRequest
 import com.augusto.mesanews.cleanarchitecture.data.api.service.AuthService
 import com.augusto.mesanews.cleanarchitecture.data.api.service.NewsService
 import com.augusto.mesanews.core.data.dataSource.RemoteDataSource
-import com.augusto.mesanews.core.domain.entity.Result
 import com.augusto.mesanews.core.domain.entity.News
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.lang.Error
+import com.augusto.mesanews.core.domain.entity.Result
 import java.util.*
 
 class ApiDataSource(private val authService: AuthService, private val newsService: NewsService): RemoteDataSource {
@@ -29,18 +27,6 @@ class ApiDataSource(private val authService: AuthService, private val newsServic
                 url = it.url
             )
         } ?: listOf()
-    }
-
-    private suspend fun <T: Any> safeCall(call: suspend () -> T): Result<T> {
-        return withContext(Dispatchers.IO) {
-            try {
-                // TODO check request is successful
-                Result.Success(call.invoke())
-            } catch (throwable: Throwable) {
-                // TODO deal with mistakes
-                Result.Failure(Error())
-            }
-        }
     }
 
     override suspend fun getHighlights(): Result<List<News>> = safeCall {
