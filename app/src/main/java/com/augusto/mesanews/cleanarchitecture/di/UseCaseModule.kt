@@ -1,6 +1,6 @@
 package com.augusto.mesanews.cleanarchitecture.di
 
-import com.augusto.mesanews.cleanarchitecture.framework.UseCases
+import com.augusto.mesanews.cleanarchitecture.data.UseCases
 import com.augusto.mesanews.core.domain.useCase.*
 import org.koin.dsl.module
 

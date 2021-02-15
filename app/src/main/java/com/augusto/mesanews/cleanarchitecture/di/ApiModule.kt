@@ -48,7 +48,7 @@ val apiModule = module {
 
     single<Interceptor>(CHECK_CONNECTION_INTERCEPTOR) { CheckConnectionInterceptor() }
     single<Interceptor>(CHECK_RESPONSE_INTERCEPTOR) { CheckResponseInterceptor() }
-    single<Interceptor>(CONFIG_REQUEST_INTERCEPTOR) { ConfigRequestInterceptor() }
+    single<Interceptor>(CONFIG_REQUEST_INTERCEPTOR) { ConfigRequestInterceptor(get()) }
     single<Interceptor>(LOG_INTERCEPTOR) { HttpLoggingInterceptor() }
 
     single(MOSHI) {

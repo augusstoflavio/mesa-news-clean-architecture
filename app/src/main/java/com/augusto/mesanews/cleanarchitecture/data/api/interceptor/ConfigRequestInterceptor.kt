@@ -1,16 +1,19 @@
 package com.augusto.mesanews.cleanarchitecture.data.api.interceptor
 
+import com.augusto.mesanews.cleanarchitecture.data.local.dataSouce.SharedPreferencesDataSource
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class ConfigRequestInterceptor: Interceptor {
+class ConfigRequestInterceptor(private val preferencesDataSource: SharedPreferencesDataSource): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val builder = chain.request()
             .newBuilder()
             .addHeader(HEADER_CONTENT_TYPE, "application/json")
 
-        //TODO add authorization
+        if (preferencesDataSource.isLogged()) {
+            builder.addHeader(HEADER_AUTHORIZATION, preferencesDataSource.getToken()!!)
+        }
 
         return chain.proceed(builder.build())
     }
