@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseButton">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">@dimen/size15</item>
+        <item name="android:paddingTop">@dimen/spacing13</item>
+        <item name="android:paddingBottom">@dimen/spacing13</item>
+    </style>
+</resources>
