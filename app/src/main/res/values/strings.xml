@@ -16,4 +16,8 @@
     <string name="log_in_with_facebook">Entrar com o facebook</string>
     <string name="log_in_with_email">Entrar com e-mail</string>
     <string name="dont_have_an_account_register">Não tenho conta. Cadastrar</string>
+    <string name="toolbar_back">Toolbar back</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>
