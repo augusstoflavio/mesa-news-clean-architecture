@@ -20,4 +20,8 @@
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="password_confirmation">Password confirmation</string>
+    <string name="birthdate">Data de nascimento</string>
+    <string name="register">Cadastrar</string>
+    <string name="name">Nome</string>
 </resources>
