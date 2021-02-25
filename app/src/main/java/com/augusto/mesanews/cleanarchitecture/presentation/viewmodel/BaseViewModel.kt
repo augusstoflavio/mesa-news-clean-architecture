@@ -10,7 +10,7 @@ open class BaseViewModel: ViewModel() {
 
     private val scope = viewModelScope
 
-    val error = MutableLiveData<Result.Error?>().apply {
+    val error = MutableLiveData<Result.Failure?>().apply {
         value = null
     }
 
@@ -27,8 +27,10 @@ open class BaseViewModel: ViewModel() {
                 call()
             } catch (error: Throwable) {
                 notifyFailure(
-                    Result.Error(
-                        message = error.message ?: "Erro não identificado"
+                    Result.Failure(
+                        Result.Error(
+                            message = error.message ?: "Erro não identificado"
+                        )
                     )
                 )
             } finally {
@@ -37,7 +39,7 @@ open class BaseViewModel: ViewModel() {
         }
     }
 
-    protected fun notifyFailure(resultError: Result.Error) {
+    protected fun notifyFailure(resultError: Result.Failure) {
         error.postValue(resultError)
     }
 }

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.extensions.toast
 import com.augusto.mesanews.cleanarchitecture.presentation.viewmodel.BaseViewModel
 
@@ -22,7 +21,7 @@ open class BaseFragment(@LayoutRes val layoutFragment: Int): Fragment() {
     fun observerBaseViewModel(baseViewModel: BaseViewModel) {
         baseViewModel.error.observe(this, {
             if (it != null) {
-                toast(it.message)
+                toast(it.error.message)
                 baseViewModel.error.value = null
             }
         })
