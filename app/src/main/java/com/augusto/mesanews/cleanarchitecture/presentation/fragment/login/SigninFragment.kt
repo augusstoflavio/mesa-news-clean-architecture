@@ -1,10 +1,14 @@
 package com.augusto.mesanews.cleanarchitecture.presentation.fragment.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import com.augusto.mesanews.cleanarchitecture.R
+import com.augusto.mesanews.cleanarchitecture.presentation.activity.MainActivity
 import com.augusto.mesanews.cleanarchitecture.presentation.fragment.BaseFragment
 import com.augusto.mesanews.cleanarchitecture.presentation.viewmodel.LoginViewModel
+import kotlinx.android.synthetic.main.fragment_signin.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SigninFragment : BaseFragment(R.layout.fragment_signin) {
@@ -13,9 +17,32 @@ class SigninFragment : BaseFragment(R.layout.fragment_signin) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _viewModel
 
-//        observerBaseViewModel(_viewModel)
+        observerBaseViewModel(_viewModel)
+
+        _viewModel.loading.observe(viewLifecycleOwner, {
+            progressBar.isVisible = it
+            btn_signin.isEnabled = !it
+        })
+
+        _viewModel.loginFormState.observe(viewLifecycleOwner, {
+            editTextTextEmailAddress.error = it.usernameError?.let { it1 -> getString(it1) }
+            editTextTextPassword.error = it.passwordError?.let { it1 -> getString(it1) }
+        })
+
+        _viewModel.loginResult.observe(viewLifecycleOwner, {
+            if (it) {
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(
+                    intent
+                )
+            }
+        })
+
+        btn_signin.setOnClickListener {
+            _viewModel.login(editTextTextEmailAddress.text.toString(), editTextTextPassword.text.toString())
+        }
     }
 
 }
