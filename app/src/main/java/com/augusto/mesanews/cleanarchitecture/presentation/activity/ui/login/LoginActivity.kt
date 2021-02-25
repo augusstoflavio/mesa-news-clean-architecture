@@ -26,15 +26,15 @@ class LoginActivity : AppCompatActivity() {
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
-        loginViewModel.loginResult.observe(this, {
-            if (it == null) {
-                return@observe
-            }
-
-            if (it) {
-                Toast.makeText(this, "Logado", Toast.LENGTH_SHORT).show()
-            }
-        })
+//        loginViewModel.loginResult.observe(this, {
+//            if (it == null) {
+//                return@observe
+//            }
+//
+//            if (it) {
+//                Toast.makeText(this, "Logado", Toast.LENGTH_SHORT).show()
+//            }
+//        })
 
 //        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
 //            .get(LoginViewModel::class.java)

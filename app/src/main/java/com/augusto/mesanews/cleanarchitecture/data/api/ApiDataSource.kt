@@ -23,7 +23,7 @@ class ApiDataSource(private val authService: AuthService, private val newsServic
                 favorite = false,
                 highlight = it.highlight,
                 imageUrl = it.imageUrl,
-                publishedAt = Calendar.getInstance(),
+                publishedAt = Date(),
                 url = it.url
             )
         } ?: listOf()
@@ -40,7 +40,7 @@ class ApiDataSource(private val authService: AuthService, private val newsServic
                 favorite = false,
                 highlight = it.highlight,
                 imageUrl = it.imageUrl,
-                publishedAt = Calendar.getInstance(),
+                publishedAt = Date(),
                 url = it.url
             )
         } ?: listOf()

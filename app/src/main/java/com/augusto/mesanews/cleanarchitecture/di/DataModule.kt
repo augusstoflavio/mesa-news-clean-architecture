@@ -1,9 +1,9 @@
 package com.augusto.mesanews.cleanarchitecture.di
 
 import androidx.room.Room
-import com.augusto.mesanews.cleanarchitecture.App
+import androidx.room.RoomDatabase
 import com.augusto.mesanews.cleanarchitecture.data.api.ApiDataSource
-import com.augusto.mesanews.cleanarchitecture.data.local.RoomDataBase
+import com.augusto.mesanews.cleanarchitecture.data.local.Database
 import com.augusto.mesanews.cleanarchitecture.data.local.dataSouce.Preferences
 import com.augusto.mesanews.cleanarchitecture.data.local.dataSouce.RoomDataSource
 import com.augusto.mesanews.cleanarchitecture.data.local.dataSouce.SharedDataSourceImpl
@@ -14,17 +14,20 @@ import com.augusto.mesanews.core.data.repository.AuthRepositoryImpl
 import com.augusto.mesanews.core.data.repository.NewsRepositoryImpl
 import com.augusto.mesanews.core.domain.repository.AuthRepository
 import com.augusto.mesanews.core.domain.repository.NewsRepository
+import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 
 private val PREFERENCES = StringQualifier("preferences")
+private val ROOM_DATABASE = StringQualifier("roomdatabase")
 
 val dataModule = module {
 
-    single {
+    single(ROOM_DATABASE) {
         Room.databaseBuilder(
-            App.instance,
-            RoomDataBase::class.java,
+            androidApplication(),
+            Database::class.java,
             "mesa-news"
         ).build()
     }
@@ -34,11 +37,12 @@ val dataModule = module {
     }
 
     single<LocalDataSource> {
-        RoomDataSource(get())
+        val room = get<Database>(ROOM_DATABASE)
+        RoomDataSource(room)
     }
 
     single(PREFERENCES) {
-        Preferences(App.instance)
+        Preferences(androidContext())
     }
 
     single<SharedPreferencesDataSource> {

@@ -1,9 +1,8 @@
 package com.augusto.mesanews.cleanarchitecture
 
 import android.app.Application
-import com.augusto.mesanews.cleanarchitecture.di.apiModule
-import com.augusto.mesanews.cleanarchitecture.di.dataModule
-import com.augusto.mesanews.cleanarchitecture.di.useCaseModule
+import com.augusto.mesanews.cleanarchitecture.di.*
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class App: Application() {
@@ -19,11 +18,13 @@ class App: Application() {
 
     private fun startKoin() {
         startKoin {
+            androidContext(this@App)
             modules(
                 listOf(
                     dataModule,
                     useCaseModule,
-                    apiModule
+                    apiModule,
+                    viewModelModule
                 )
             )
         }

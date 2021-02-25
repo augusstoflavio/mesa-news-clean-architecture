@@ -7,7 +7,7 @@ data class News (
     var description: String,
     var content: String,
     var author: String,
-    var publishedAt: Calendar,
+    var publishedAt: Date,
     var highlight: Boolean,
     var url: String,
     var imageUrl: String,

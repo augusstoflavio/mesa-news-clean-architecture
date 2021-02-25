@@ -5,6 +5,7 @@ import com.augusto.mesanews.cleanarchitecture.data.api.interceptor.CheckResponse
 import com.augusto.mesanews.cleanarchitecture.data.api.interceptor.ConfigRequestInterceptor
 import com.augusto.mesanews.cleanarchitecture.data.api.service.AuthService
 import com.augusto.mesanews.cleanarchitecture.data.api.service.NewsService
+import com.squareup.moshi.Moshi
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -30,7 +31,7 @@ val apiModule = module {
         Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(get(CLIENT))
-                .addConverterFactory(get(MOSHI))
+                .addConverterFactory(MoshiConverterFactory.create(get(MOSHI)))
                 .build()
     }
 
@@ -52,7 +53,8 @@ val apiModule = module {
     single<Interceptor>(LOG_INTERCEPTOR) { HttpLoggingInterceptor() }
 
     single(MOSHI) {
-        MoshiConverterFactory.create()
+        Moshi.Builder()
+            .build()
     }
 
     single<AuthService> {
