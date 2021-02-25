@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_nav_graph"
+    app:startDestination="@id/loginHomeFragment">
+
+    <fragment
+        android:id="@+id/loginHomeFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.fragment.login.LoginHomeFragment"
+        android:label="fragment_login_home"
+        tools:layout="@layout/fragment_login_home" >
+        <action
+            android:id="@+id/toSigninFragment"
+            app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/toSignupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signinFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.fragment.login.SigninFragment"
+        android:label="SigninFragment" >
+        <action
+            android:id="@+id/toSignupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.fragment.login.SignupFragment"
+        android:label="SignupFragment" />
+</navigation>
