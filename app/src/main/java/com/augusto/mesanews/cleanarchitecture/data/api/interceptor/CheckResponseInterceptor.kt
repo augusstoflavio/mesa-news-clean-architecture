@@ -11,7 +11,7 @@ class CheckResponseInterceptor: Interceptor {
         val request = chain.request()
         val response = chain.proceed(request)
         if (!response.isSuccessful) {
-            throw ApiException()
+            throw ApiException(response.message, response.code)
         }
         return response
     }

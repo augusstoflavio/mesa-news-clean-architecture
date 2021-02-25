@@ -11,6 +11,7 @@ sealed class Result<out T> {
     }
 
     data class Error(
-        var message: String
+        var message: String,
+        var code: Int? = null
     )
 }
