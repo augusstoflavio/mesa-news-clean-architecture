@@ -1,4 +1,4 @@
-package com.augusto.mesanews.cleanarchitecture.presentation.fragment
+package com.augusto.mesanews.cleanarchitecture.presentation.bases
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.extensions.toast
-import com.augusto.mesanews.cleanarchitecture.presentation.viewmodel.BaseViewModel
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 

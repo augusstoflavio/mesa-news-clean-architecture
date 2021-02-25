@@ -1,19 +1,19 @@
-package com.augusto.mesanews.cleanarchitecture.presentation.fragment.login
+package com.augusto.mesanews.cleanarchitecture.presentation.login.fragment
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import com.augusto.mesanews.cleanarchitecture.R
-import com.augusto.mesanews.cleanarchitecture.presentation.activity.MainActivity
-import com.augusto.mesanews.cleanarchitecture.presentation.fragment.BaseFragment
-import com.augusto.mesanews.cleanarchitecture.presentation.viewmodel.LoginViewModel
+import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseFragment
+import com.augusto.mesanews.cleanarchitecture.presentation.login.LoginActivity
+import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.SigninViewModel
 import kotlinx.android.synthetic.main.fragment_signin.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SigninFragment : BaseFragment(R.layout.fragment_signin) {
 
-    private val _viewModel: LoginViewModel by viewModel()
+    private val _viewModel: SigninViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,14 +35,14 @@ class SigninFragment : BaseFragment(R.layout.fragment_signin) {
             btn_signin.isEnabled = !it
         })
 
-        _viewModel.loginFormState.observe(viewLifecycleOwner, {
+        _viewModel.signinFormState.observe(viewLifecycleOwner, {
             editTextTextEmailAddress.error = it.usernameError?.let { it1 -> getString(it1) }
             editTextTextPassword.error = it.passwordError?.let { it1 -> getString(it1) }
         })
 
         _viewModel.loginResult.observe(viewLifecycleOwner, {
             if (it) {
-                val intent = Intent(requireContext(), MainActivity::class.java)
+                val intent = Intent(requireContext(), LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(
                     intent

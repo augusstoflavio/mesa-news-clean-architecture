@@ -1,4 +1,4 @@
-package com.augusto.mesanews.cleanarchitecture.presentation.viewmodel
+package com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData
@@ -6,13 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.data.UseCases
 import com.augusto.mesanews.cleanarchitecture.data.local.dataSouce.SharedPreferencesDataSource
-import com.augusto.mesanews.cleanarchitecture.presentation.activity.ui.login.LoginFormState
+import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseViewModel
+import com.augusto.mesanews.cleanarchitecture.presentation.login.formstate.SigninFormState
 import com.augusto.mesanews.core.domain.entity.Result
 
-class LoginViewModel(private val sharedPreferencesDataSource: SharedPreferencesDataSource, private val useCases: UseCases) : BaseViewModel() {
+class SigninViewModel(private val sharedPreferencesDataSource: SharedPreferencesDataSource, private val useCases: UseCases) : BaseViewModel() {
 
-    private val _loginForm = MutableLiveData<LoginFormState>()
-    val loginFormState: LiveData<LoginFormState> = _loginForm
+    private val _loginForm = MutableLiveData<SigninFormState>()
+    val signinFormState: LiveData<SigninFormState> = _loginForm
 
     private val _loginResult = MutableLiveData<Boolean>()
     val loginResult: LiveData<Boolean> = _loginResult
@@ -38,10 +39,10 @@ class LoginViewModel(private val sharedPreferencesDataSource: SharedPreferencesD
 
     private fun loginDataChanged(username: String, password: String): Boolean {
         if (!isUserNameValid(username)) {
-            _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
+            _loginForm.value = SigninFormState(usernameError = R.string.invalid_username)
             return false
         } else if (!isPasswordValid(password)) {
-            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+            _loginForm.value = SigninFormState(passwordError = R.string.invalid_password)
             return false
         }
 

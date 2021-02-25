@@ -1,4 +1,4 @@
-package com.augusto.mesanews.cleanarchitecture.presentation.viewmodel
+package com.augusto.mesanews.cleanarchitecture.presentation.bases
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.augusto.mesanews.cleanarchitecture.presentation.fragment.login
+package com.augusto.mesanews.cleanarchitecture.presentation.login.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginHomeFragment"
-        android:name="com.augusto.mesanews.cleanarchitecture.presentation.fragment.login.LoginHomeFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.login.fragment.LoginHomeFragment"
         android:label="fragment_login_home"
         tools:layout="@layout/fragment_login_home" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/signinFragment"
-        android:name="com.augusto.mesanews.cleanarchitecture.presentation.fragment.login.SigninFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.login.fragment.SigninFragment"
         android:label="SigninFragment" >
         <action
             android:id="@+id/toSignupFragment"
@@ -31,6 +31,6 @@
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.augusto.mesanews.cleanarchitecture.presentation.fragment.login.SignupFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.login.fragment.SignupFragment"
         android:label="SignupFragment" />
 </navigation>
