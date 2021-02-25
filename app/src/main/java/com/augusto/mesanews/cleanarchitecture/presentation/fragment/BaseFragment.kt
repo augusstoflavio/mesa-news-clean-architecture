@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.extensions.toast
 import com.augusto.mesanews.cleanarchitecture.presentation.viewmodel.BaseViewModel
+import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.toolbar.view.*
 
 open class BaseFragment(@LayoutRes val layoutFragment: Int): Fragment() {
 
@@ -25,5 +29,13 @@ open class BaseFragment(@LayoutRes val layoutFragment: Int): Fragment() {
                 baseViewModel.error.value = null
             }
         })
+    }
+
+    fun initToolbar(@StringRes title: Int) {
+        activity?.setActionBar(toolbar)
+        toolbar.toolbar_title.setText(title)
+        toolbar.toolbar_back.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
 }

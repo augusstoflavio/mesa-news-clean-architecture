@@ -9,17 +9,27 @@ import com.augusto.mesanews.cleanarchitecture.presentation.activity.MainActivity
 import com.augusto.mesanews.cleanarchitecture.presentation.fragment.BaseFragment
 import com.augusto.mesanews.cleanarchitecture.presentation.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_signin.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SigninFragment : BaseFragment(R.layout.fragment_signin) {
 
-    private val _viewModel: LoginViewModel by sharedViewModel()
+    private val _viewModel: LoginViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initToolbar(R.string.log_in_with_email)
+
         observerBaseViewModel(_viewModel)
 
+        setupObservers()
+
+        btn_signin.setOnClickListener {
+            _viewModel.login(editTextTextEmailAddress.text.toString(), editTextTextPassword.text.toString())
+        }
+    }
+
+    private fun setupObservers() {
         _viewModel.loading.observe(viewLifecycleOwner, {
             progressBar.isVisible = it
             btn_signin.isEnabled = !it
@@ -39,10 +49,6 @@ class SigninFragment : BaseFragment(R.layout.fragment_signin) {
                 )
             }
         })
-
-        btn_signin.setOnClickListener {
-            _viewModel.login(editTextTextEmailAddress.text.toString(), editTextTextPassword.text.toString())
-        }
     }
 
 }
