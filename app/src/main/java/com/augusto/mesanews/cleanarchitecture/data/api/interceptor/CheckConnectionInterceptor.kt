@@ -10,9 +10,10 @@ import okhttp3.Response
 class CheckConnectionInterceptor(): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        if (hasConnection()) {
-            throw NoConnectionException()
-        }
+          //TODO fix verification
+//        if (hasConnection()) {
+//            throw NoConnectionException()
+//        }
 
         return chain.proceed(chain.request())
     }
