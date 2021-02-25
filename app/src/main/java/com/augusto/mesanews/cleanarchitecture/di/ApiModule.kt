@@ -16,7 +16,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 private const val TIMEOUT = 120L
-private const val BASE_URL = "https://mesa-news-api.herokuapp.com/"
+private const val BASE_URL = "https://mesa-news-api.herokuapp.com/v1/"
 private val RETROFIT = StringQualifier("retrofit")
 private val MOSHI = StringQualifier("moshi")
 private val CLIENT = StringQualifier("client")
@@ -31,7 +31,7 @@ val apiModule = module {
         Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(get(CLIENT))
-                .addConverterFactory(MoshiConverterFactory.create(get(MOSHI)))
+                .addConverterFactory(MoshiConverterFactory.create())
                 .build()
     }
 
