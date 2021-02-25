@@ -12,10 +12,14 @@
         tools:layout="@layout/fragment_login_home" >
         <action
             android:id="@+id/toSigninFragment"
-            app:destination="@id/signinFragment" />
+            app:destination="@id/signinFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
         <action
             android:id="@+id/toSignupFragment"
-            app:destination="@id/signupFragment" />
+            app:destination="@id/signupFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"/>
     </fragment>
     <fragment
         android:id="@+id/signinFragment"
