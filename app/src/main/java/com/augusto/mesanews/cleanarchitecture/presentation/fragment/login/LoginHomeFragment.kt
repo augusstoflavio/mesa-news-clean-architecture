@@ -25,5 +25,10 @@ class LoginHomeFragment : Fragment() {
             val action = LoginHomeFragmentDirections.toSigninFragment()
             view.findNavController().navigate(action)
         }
+
+        btn_signup.setOnClickListener {
+            val action = LoginHomeFragmentDirections.toSignupFragment()
+            view.findNavController().navigate(action)
+        }
     }
 }
