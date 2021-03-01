@@ -25,4 +25,6 @@
     <string name="register">Cadastrar</string>
     <string name="name">Nome</string>
     <string name="action_sign_up">Cadastrar</string>
+    <string name="invalid_name">Nome inválido</string>
+    <string name="signup_success">Cadastro realizado</string>
 </resources>

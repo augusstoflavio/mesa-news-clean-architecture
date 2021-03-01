@@ -1,147 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        style="@style/BaseLabelInput"
+        <include
+            android:id="@+id/include"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/BaseLabelInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing16"
+            android:layout_marginTop="@dimen/spacing24"
+            android:text="@string/name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextTextNameAddress"
+            android:layout_width="0dp"
+            style="@style/BaseInput"
+            android:layout_marginStart="@dimen/spacing16"
+            android:layout_marginTop="@dimen/spacing2"
+            android:layout_marginEnd="@dimen/spacing16"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/BaseLabelInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing16"
+            android:layout_marginTop="@dimen/spacing26"
+            android:text="@string/e_mail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextNameAddress" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextTextEmail"
+            style="@style/BaseInput"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/spacing16"
+            android:layout_marginTop="@dimen/spacing2"
+            android:layout_marginEnd="@dimen/spacing16"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/BaseLabelInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing16"
+            android:layout_marginTop="@dimen/spacing26"
+            android:text="@string/password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmail" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextTextPassword"
+            style="@style/BaseInput"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/spacing16"
+            android:layout_marginTop="@dimen/spacing2"
+            android:layout_marginEnd="@dimen/spacing16"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            style="@style/BaseButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing16"
+            android:layout_marginTop="@dimen/spacing26"
+            android:layout_marginEnd="@dimen/spacing16"
+            android:background="@drawable/bg_blue_button_filled"
+            android:text="@string/register"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="24dp"
-        android:text="@string/name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextTextNameAddress"
-        android:layout_width="0dp"
-        style="@style/BaseInput"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing2"
-        android:layout_marginEnd="@dimen/spacing16"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView4"
-        style="@style/BaseLabelInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing26"
-        android:text="@string/e_mail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextNameAddress" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextTextEmail"
-        style="@style/BaseInput"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing2"
-        android:layout_marginEnd="@dimen/spacing16"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView5"
-        style="@style/BaseLabelInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing26"
-        android:text="@string/password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmail" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextTextPassword"
-        style="@style/BaseInput"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing2"
-        android:layout_marginEnd="@dimen/spacing16"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView6"
-        style="@style/BaseLabelInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing26"
-        android:text="@string/password_confirmation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextTextPasswordConfirmation"
-        style="@style/BaseInput"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing2"
-        android:layout_marginEnd="@dimen/spacing16"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView7"
-        style="@style/BaseLabelInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing26"
-        android:text="@string/birthdate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPasswordConfirmation" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextBirthDate"
-        style="@style/BaseInput"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing2"
-        android:layout_marginEnd="@dimen/spacing16"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
-        style="@style/BaseButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="@dimen/spacing16"
-        android:background="@drawable/bg_blue_button_filled"
-        android:text="@string/register"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextBirthDate" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="center"/>
+</FrameLayout>
