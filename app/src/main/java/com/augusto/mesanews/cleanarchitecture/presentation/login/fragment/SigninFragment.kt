@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseFragment
 import com.augusto.mesanews.cleanarchitecture.presentation.login.LoginActivity
@@ -26,6 +27,11 @@ class SigninFragment : BaseFragment(R.layout.fragment_signin) {
 
         btn_signin.setOnClickListener {
             _viewModel.login(editTextTextEmailAddress.text.toString(), editTextTextPassword.text.toString())
+        }
+
+        btn_signup.setOnClickListener {
+            val action = SigninFragmentDirections.toSignupFragment()
+            view.findNavController().navigate(action)
         }
     }
 
