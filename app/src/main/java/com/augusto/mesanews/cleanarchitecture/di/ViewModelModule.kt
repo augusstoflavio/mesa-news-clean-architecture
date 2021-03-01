@@ -1,5 +1,6 @@
 package com.augusto.mesanews.cleanarchitecture.di
 
+import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.LoginHomeViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.SigninViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.SignupViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -13,5 +14,9 @@ val viewModelModule = module {
 
     viewModel {
         SignupViewModel(get())
+    }
+
+    viewModel {
+        LoginHomeViewModel(get())
     }
 }

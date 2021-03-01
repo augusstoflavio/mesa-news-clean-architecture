@@ -7,8 +7,8 @@ import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseFragment
-import com.augusto.mesanews.cleanarchitecture.presentation.login.LoginActivity
 import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.SigninViewModel
+import com.augusto.mesanews.cleanarchitecture.presentation.news.NewsActivity
 import kotlinx.android.synthetic.main.fragment_signin.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -48,7 +48,7 @@ class SigninFragment : BaseFragment(R.layout.fragment_signin) {
 
         _viewModel.loginResult.observe(viewLifecycleOwner, {
             if (it) {
-                val intent = Intent(requireContext(), LoginActivity::class.java)
+                val intent = Intent(requireContext(), NewsActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(
                     intent

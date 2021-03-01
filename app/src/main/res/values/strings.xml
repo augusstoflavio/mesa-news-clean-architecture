@@ -27,4 +27,10 @@
     <string name="action_sign_up">Cadastrar</string>
     <string name="invalid_name">Nome inválido</string>
     <string name="signup_success">Cadastro realizado</string>
+    <string name="title_activity_news">NewsActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>
