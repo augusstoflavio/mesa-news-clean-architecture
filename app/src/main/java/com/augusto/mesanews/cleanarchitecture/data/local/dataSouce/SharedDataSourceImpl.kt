@@ -8,7 +8,7 @@ class SharedDataSourceImpl(val preferences: Preferences): SharedPreferencesDataS
 
     override fun saveUser(name: String, token: String) {
         preferences.putName(name)
-        preferences.putToken(name)
+        preferences.putToken(token)
     }
 
     override fun clear() {
