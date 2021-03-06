@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/spacing16"
+    android:paddingTop="@dimen/spacing16"
+    android:paddingEnd="@dimen/spacing16"
+    android:paddingBottom="0dp">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="145dp"
+        android:background="@drawable/image_radius"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing10"
+        android:fontFamily="@font/roboto"
+        android:textColor="#000000"
+        android:textSize="@dimen/size12"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:text="2 horas atrás" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing14"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="#000000"
+        android:textSize="@dimen/size16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        tools:text="Bolsa dispara 9%; dólar opera em baixa, vendido perto de R$ 5,08" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing8"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto"
+        android:maxLines="3"
+        android:textColor="#000000"
+        android:textSize="@dimen/size12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        tools:text="O dólar comercial operava em queda e a Bolsa disparava nesta terça-feira (24). Por volta das 14h50, o Ibovespa, principal índice da Bolsa brasileira, avançava 9,65%, a 69.703,29 pontos. Ontem, o índice caiu mais de 5% e atingiu o menor nível desde 10 de julho de 2017.   No mesmo horário, o dólar registrava baixa de 1,02%, a R$ 5,084 na venda, após fechar em alta de 2,21%, a R$ 5,138 na venda, ontem.  O valor do dólar divulgado diariamente pela imprensa, inclusive o UOL, refere-se ao dólar comercial. Para quem vai viajar e precisa comprar moeda em corretoras de câmbio, o valor é bem mais alto.... - Veja mais em https://economia.uol.com.br/cotacoes/noticias/redacao/2020/03/24/dolar-bolsa-operacao.htm?cmpid=copiaecola" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/ic_saved" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/spacing16"
+        android:background="#D3D3D3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+</androidx.constraintlayout.widget.ConstraintLayout>
