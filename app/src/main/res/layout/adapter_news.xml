@@ -3,11 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingStart="@dimen/spacing16"
-    android:paddingTop="@dimen/spacing16"
-    android:paddingEnd="@dimen/spacing16"
-    android:paddingBottom="0dp">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -75,8 +71,11 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/spacing16"
+        android:layout_marginBottom="16dp"
         android:background="#D3D3D3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 </androidx.constraintlayout.widget.ConstraintLayout>

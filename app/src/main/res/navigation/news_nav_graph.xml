@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_nav_graph"
+    app:startDestination="@id/newsHomeFragment">
+
+    <fragment
+        android:id="@+id/newsHomeFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.news.NewsHomeFragment"
+        android:label="fragment_news_home"
+        tools:layout="@layout/fragment_news_home" />
+</navigation>
