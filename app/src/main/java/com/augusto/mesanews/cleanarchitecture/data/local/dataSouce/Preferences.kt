@@ -34,7 +34,7 @@ class Preferences(context: Context) {
     }
 
     private fun getString(name: String): String? {
-        return preferences.getString(name, "")
+        return preferences.getString(name, null)
     }
 
     fun clear() {
