@@ -51,6 +51,7 @@ class LoginHomeFragment : Fragment() {
                 startActivity(
                     intent
                 )
+                activity?.finish()
             }
         })
     }

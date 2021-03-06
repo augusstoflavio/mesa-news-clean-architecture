@@ -53,6 +53,7 @@ class SigninFragment : BaseFragment(R.layout.fragment_signin) {
                 startActivity(
                     intent
                 )
+                activity?.finish()
             }
         })
     }
