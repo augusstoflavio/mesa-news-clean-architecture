@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/image"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:scaleType="fitXY"
@@ -15,7 +15,7 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/title"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing16"
@@ -23,7 +23,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/size16"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="'Mulher-Maravilha 1984' é adiado para agosto de 2020 por conta da covid-19." />
 
@@ -33,12 +33,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing24"
         android:layout_marginTop="@dimen/spacing8"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/title"
         app:srcCompat="@drawable/ic_saved" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -46,6 +46,6 @@
         android:fontFamily="@font/roboto"
         android:textSize="@dimen/size12"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@id/title"
         tools:text="16 horas atrás" />
 </androidx.constraintlayout.widget.ConstraintLayout>
