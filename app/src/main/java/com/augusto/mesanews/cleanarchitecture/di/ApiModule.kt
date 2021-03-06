@@ -6,14 +6,15 @@ import com.augusto.mesanews.cleanarchitecture.data.api.interceptor.ConfigRequest
 import com.augusto.mesanews.cleanarchitecture.data.api.service.AuthService
 import com.augusto.mesanews.cleanarchitecture.data.api.service.NewsService
 import com.squareup.moshi.Moshi
-import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 private const val TIMEOUT = 120L
 private const val BASE_URL = "https://mesa-news-api.herokuapp.com/v1/"
@@ -37,10 +38,10 @@ val apiModule = module {
 
     single(CLIENT) {
         val httpClientBuilder = OkHttpClient.Builder()
+                .addInterceptor(get<Interceptor>(LOG_INTERCEPTOR))
                 .addInterceptor(get<Interceptor>(CHECK_CONNECTION_INTERCEPTOR))
                 .addInterceptor(get<Interceptor>(CHECK_RESPONSE_INTERCEPTOR))
                 .addInterceptor(get<Interceptor>(CONFIG_REQUEST_INTERCEPTOR))
-                .addInterceptor(get<Interceptor>(LOG_INTERCEPTOR))
                 .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -50,7 +51,10 @@ val apiModule = module {
     single<Interceptor>(CHECK_CONNECTION_INTERCEPTOR) { CheckConnectionInterceptor() }
     single<Interceptor>(CHECK_RESPONSE_INTERCEPTOR) { CheckResponseInterceptor() }
     single<Interceptor>(CONFIG_REQUEST_INTERCEPTOR) { ConfigRequestInterceptor(get()) }
-    single<Interceptor>(LOG_INTERCEPTOR) { HttpLoggingInterceptor() }
+    single<Interceptor>(LOG_INTERCEPTOR) {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
 
     single(MOSHI) {
         Moshi.Builder()

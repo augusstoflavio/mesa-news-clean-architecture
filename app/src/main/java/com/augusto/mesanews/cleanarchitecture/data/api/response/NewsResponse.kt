@@ -1,9 +1,9 @@
 package com.augusto.mesanews.cleanarchitecture.data.api.response
 
+import com.augusto.mesanews.core.domain.entity.News
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import java.util.*
 
-@JsonClass(generateAdapter = true)
 data class NewsResponse (
     @Json(name = "title")
     var title: String,
@@ -20,5 +20,20 @@ data class NewsResponse (
     @Json(name = "url")
     var url: String,
     @Json(name = "image_url")
-    var imageUrl: String,
-)
+    var imageUrl: String?,
+) {
+
+    fun toData(): News {
+        return News(
+                title = title,
+                author = author,
+                content = content,
+                description = description,
+                favorite = false,
+                highlight = highlight,
+                imageUrl = imageUrl ?: "",
+                publishedAt = Date(),
+                url = url
+        )
+    }
+}

@@ -1,9 +1,7 @@
 package com.augusto.mesanews.cleanarchitecture.data.api.response
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = true)
 data class PaginationResponse(
     @Json(name = "current_page")
     var currentPage: Int,

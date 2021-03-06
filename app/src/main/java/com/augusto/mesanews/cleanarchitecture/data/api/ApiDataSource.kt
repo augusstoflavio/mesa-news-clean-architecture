@@ -15,34 +15,14 @@ class ApiDataSource(private val authService: AuthService, private val newsServic
     override suspend fun getNews(currentPage: Int): Result<List<News>> = safeCall {
         val getNewsResponse = newsService.getNews(currentPage).body()
         getNewsResponse?.data?.map {
-            News(
-                title = it.title,
-                author = it.author,
-                content = it.content,
-                description = it.description,
-                favorite = false,
-                highlight = it.highlight,
-                imageUrl = it.imageUrl,
-                publishedAt = Date(),
-                url = it.url
-            )
+            it.toData()
         } ?: listOf()
     }
 
     override suspend fun getHighlights(): Result<List<News>> = safeCall {
         val getNewsResponse = newsService.getHighlights().body()
         getNewsResponse?.data?.map {
-            News(
-                title = it.title,
-                author = it.author,
-                content = it.content,
-                description = it.description,
-                favorite = false,
-                highlight = it.highlight,
-                imageUrl = it.imageUrl,
-                publishedAt = Date(),
-                url = it.url
-            )
+            it.toData()
         } ?: listOf()
     }
 
