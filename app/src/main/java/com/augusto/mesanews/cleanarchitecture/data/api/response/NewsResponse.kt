@@ -5,22 +5,22 @@ import com.squareup.moshi.Json
 import java.util.*
 
 data class NewsResponse (
-    @Json(name = "title")
+    @field:Json(name = "title")
     var title: String,
-    @Json(name = "description")
+    @field:Json(name = "description")
     var description: String,
-    @Json(name = "content")
+    @field:Json(name = "content")
     var content: String,
-    @Json(name = "author")
+    @field:Json(name = "author")
     var author: String,
-    @Json(name = "published_at")
+    @field:Json(name = "published_at")
     var published_at: String,
-    @Json(name = "highlight")
+    @field:Json(name = "highlight")
     var highlight: Boolean,
-    @Json(name = "url")
+    @field:Json(name = "url")
     var url: String,
-    @Json(name = "image_url")
-    var imageUrl: String?,
+    @field:Json(name = "image_url")
+    var imageUrl: String,
 ) {
 
     fun toData(): News {
