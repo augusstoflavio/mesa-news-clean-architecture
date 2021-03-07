@@ -83,4 +83,6 @@ dependencies {
 
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
