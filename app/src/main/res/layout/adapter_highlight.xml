@@ -12,7 +12,6 @@
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/download"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
