@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseAdapter
 import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsPresentation
+import com.squareup.picasso.Picasso
 
 class NewsAdapter() : BaseAdapter<NewsAdapter.NewsAdapterHolder, NewsPresentation>(R.layout.adapter_news) {
 
@@ -22,6 +23,8 @@ class NewsAdapter() : BaseAdapter<NewsAdapter.NewsAdapterHolder, NewsPresentatio
             title.text = news.title
             content.text = news.content
             date.text = news.date
+
+            Picasso.get().load(news.imageUrl).into(image)
         }
     }
 

@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseAdapter
 import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsPresentation
+import com.squareup.picasso.Picasso
+import kotlin.math.PI
 
 class HighlightAdapter() : BaseAdapter<HighlightAdapter.HighlightAdapterHolder, NewsPresentation>(R.layout.adapter_highlight) {
 
@@ -20,6 +22,8 @@ class HighlightAdapter() : BaseAdapter<HighlightAdapter.HighlightAdapterHolder, 
         fun bind(news: NewsPresentation) {
             title.text = news.title
             date.text = news.date
+
+            Picasso.get().load(news.imageUrl).into(image)
         }
     }
 
