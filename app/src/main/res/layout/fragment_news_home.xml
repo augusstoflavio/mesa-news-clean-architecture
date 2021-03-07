@@ -13,57 +13,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing24"
-        android:fontFamily="@font/roboto"
-        android:text="@string/highlights"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size19"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_highlight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        tools:itemCount="1"
-        tools:listitem="@layout/adapter_highlight" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/latest_news"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size19"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_highlight" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_news"
-        android:layout_width="match_parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/spacing16"
-        android:layout_marginTop="@dimen/spacing16"
-        android:layout_marginEnd="@dimen/spacing16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        tools:listitem="@layout/adapter_news" />
+        app:layout_constraintTop_toBottomOf="@+id/include">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing16"
+                android:layout_marginTop="@dimen/spacing24"
+                android:fontFamily="@font/roboto"
+                android:text="@string/highlights"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size19"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_highlight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing16"
+                android:layout_marginTop="@dimen/spacing16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10"
+                tools:itemCount="1"
+                tools:listitem="@layout/adapter_highlight" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing16"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/latest_news"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size19"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/list_highlight" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing16"
+                android:layout_marginTop="@dimen/spacing16"
+                android:layout_marginEnd="@dimen/spacing16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView12"
+                tools:listitem="@layout/adapter_news" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
