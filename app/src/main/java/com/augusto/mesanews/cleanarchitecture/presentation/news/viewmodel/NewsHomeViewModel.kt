@@ -9,11 +9,17 @@ import com.augusto.mesanews.core.domain.entity.Result
 
 class NewsHomeViewModel(private val useCases: UseCases): BaseViewModel() {
 
+    private var _currentPage = 1
+
     private val _highlights = MutableLiveData<List<NewsPresentation>>()
     val highlights: LiveData<List<NewsPresentation>> = _highlights
 
     private val _news = MutableLiveData<List<NewsPresentation>>()
     val news: LiveData<List<NewsPresentation>> = _news
+
+    init {
+        _news.value = listOf()
+    }
 
     fun getHighlights() {
         run {
@@ -37,19 +43,25 @@ class NewsHomeViewModel(private val useCases: UseCases): BaseViewModel() {
         }
     }
 
-    fun getNews(currentPage: Int) {
+    fun getNews() {
         run {
-            when (val response = useCases.getNews(currentPage)) {
+            when (val response = useCases.getNews(_currentPage)) {
                 is Result.Success -> {
-                    _news.postValue(response.data.map {
+                    val newList = response.data.map {
                         NewsPresentation(
-                            imageUrl = it.imageUrl,
-                            title = it.title,
-                            content = it.content,
-                            isFavorite = it.favorite,
-                            date = "2 horas"
+                                imageUrl = it.imageUrl,
+                                title = it.title,
+                                content = it.content,
+                                isFavorite = it.favorite,
+                                date = "2 horas"
                         )
-                    })
+                    }
+                    var currentList = _news.value
+                    currentList = currentList!!.toMutableList()
+                    currentList.addAll(newList)
+                    _news.postValue(currentList!!)
+
+                    _currentPage += 1
                 }
                 is Result.Failure -> {
                     notifyFailure(response)
