@@ -19,10 +19,13 @@
         android:layout_width="173dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing16"
+        android:layout_marginEnd="@dimen/spacing16"
         android:fontFamily="@font/roboto"
+        android:maxLines="4"
         android:textColor="@color/black"
         android:textSize="@dimen/size16"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="'Mulher-Maravilha 1984' é adiado para agosto de 2020 por conta da covid-19." />
