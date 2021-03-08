@@ -31,28 +31,12 @@ class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
     }
 
     private fun setupObservers() {
-        _viewModel.news.observe(viewLifecycleOwner, { it ->
-            _newsAdapter.update(it.map {
-                NewsPresentation(
-                        imageUrl = it.imageUrl,
-                        title = it.title,
-                        content = it.content,
-                        isFavorite = it.favorite,
-                        date = "2 horas"
-                )
-            })
+        _viewModel.news.observe(viewLifecycleOwner, {
+            _newsAdapter.update(it)
         })
 
-        _viewModel.highlights.observe(viewLifecycleOwner, { it ->
-            _highlightAdapter.update(it.map {
-                NewsPresentation(
-                        imageUrl = it.imageUrl,
-                        title = it.title,
-                        content = it.content,
-                        isFavorite = it.favorite,
-                        date = "2 horas"
-                )
-            })
+        _viewModel.highlights.observe(viewLifecycleOwner, {
+            _highlightAdapter.update(it)
         })
     }
 
