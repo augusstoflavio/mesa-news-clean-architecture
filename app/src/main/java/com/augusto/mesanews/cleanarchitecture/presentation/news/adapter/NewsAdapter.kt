@@ -24,7 +24,9 @@ class NewsAdapter() : BaseAdapter<NewsAdapter.NewsAdapterHolder, NewsPresentatio
             content.text = news.content
             date.text = news.date
 
-            Picasso.get().load(news.imageUrl).into(image)
+            if (!news.imageUrl.isNullOrEmpty()) {
+                Picasso.get().load(news.imageUrl).into(image)
+            }
         }
     }
 
