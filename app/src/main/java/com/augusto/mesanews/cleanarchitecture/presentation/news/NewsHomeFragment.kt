@@ -2,6 +2,7 @@ package com.augusto.mesanews.cleanarchitecture.presentation.news
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseFragment
@@ -39,6 +40,10 @@ class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
 
         _viewModel.highlights.observe(viewLifecycleOwner, {
             _highlightAdapter.update(it)
+        })
+
+        _viewModel.loading.observe(viewLifecycleOwner, {
+            progress_bar.isVisible = it
         })
     }
 
