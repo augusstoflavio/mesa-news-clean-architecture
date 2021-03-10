@@ -14,7 +14,7 @@ data class NewsResponse (
     @field:Json(name = "author")
     var author: String,
     @field:Json(name = "published_at")
-    var published_at: String,
+    var publishedAt: Date,
     @field:Json(name = "highlight")
     var highlight: Boolean,
     @field:Json(name = "url")
@@ -32,7 +32,7 @@ data class NewsResponse (
                 favorite = false,
                 highlight = highlight,
                 imageUrl = imageUrl ?: "",
-                publishedAt = Date(),
+                publishedAt = publishedAt,
                 url = url
         )
     }

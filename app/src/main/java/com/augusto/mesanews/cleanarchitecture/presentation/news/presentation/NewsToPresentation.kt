@@ -1,8 +1,13 @@
 package com.augusto.mesanews.cleanarchitecture.presentation.news.presentation
 
+import android.annotation.SuppressLint
 import com.augusto.mesanews.core.domain.entity.News
+import java.text.SimpleDateFormat
 
 object NewsToPresentation {
+
+    @SuppressLint("SimpleDateFormat")
+    private val FORMAT = SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
 
     fun converter(news: News): NewsPresentation {
         return NewsPresentation(
@@ -10,7 +15,7 @@ object NewsToPresentation {
                 title = news.title,
                 content = news.content,
                 isFavorite = news.favorite,
-                date = "2 horas"
+                date = FORMAT.format(news.publishedAt)
         )
     }
 }

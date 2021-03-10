@@ -1,5 +1,6 @@
 package com.augusto.mesanews.cleanarchitecture.di
 
+import com.augusto.mesanews.cleanarchitecture.data.api.adapter.DateAdapter
 import com.augusto.mesanews.cleanarchitecture.data.api.interceptor.CheckConnectionInterceptor
 import com.augusto.mesanews.cleanarchitecture.data.api.interceptor.CheckResponseInterceptor
 import com.augusto.mesanews.cleanarchitecture.data.api.interceptor.ConfigRequestInterceptor
@@ -32,7 +33,7 @@ val apiModule = module {
         Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(get(CLIENT))
-                .addConverterFactory(MoshiConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create(get(MOSHI)))
                 .build()
     }
 
@@ -58,6 +59,7 @@ val apiModule = module {
 
     single(MOSHI) {
         Moshi.Builder()
+            .add(DateAdapter)
             .build()
     }
 
