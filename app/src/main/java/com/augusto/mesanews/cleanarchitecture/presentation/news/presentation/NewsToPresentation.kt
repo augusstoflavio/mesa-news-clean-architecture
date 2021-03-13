@@ -15,6 +15,7 @@ object NewsToPresentation {
                 title = news.title,
                 content = news.content,
                 isFavorite = news.favorite,
+                url = news.url,
                 date = FORMAT.format(news.publishedAt)
         )
     }

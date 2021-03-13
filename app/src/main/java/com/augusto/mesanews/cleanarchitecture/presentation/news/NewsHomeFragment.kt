@@ -3,6 +3,11 @@ package com.augusto.mesanews.cleanarchitecture.presentation.news
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseFragment
@@ -16,10 +21,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
 
-    private var _loadingNews: Boolean = false
     private val _viewModel: NewsHomeViewModel by viewModel()
-    private val _newsAdapter: NewsAdapter = NewsAdapter()
-    private val _highlightAdapter: HighlightAdapter = HighlightAdapter()
+    private val _newsAdapter: NewsAdapter = NewsAdapter(::viewNews)
+    private lateinit var _navController: NavController
+    private val _highlightAdapter: HighlightAdapter = HighlightAdapter(::viewNews)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +36,8 @@ class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
 
         setupLists()
         setupObservers()
+
+        _navController = Navigation.findNavController(view)
     }
 
     private fun setupObservers() {
@@ -62,6 +69,12 @@ class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
 
         list_highlight.adapter = _highlightAdapter
         list_highlight.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    private fun viewNews(newsPresentation: NewsPresentation) {
+        _navController.navigate(
+            NewsHomeFragmentDirections.toViewer(newsPresentation)
+        )
     }
 
 }

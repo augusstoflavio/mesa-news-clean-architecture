@@ -17,7 +17,9 @@
     <dimen name="spacing40">40dp</dimen>
     <dimen name="spacing48">48dp</dimen>
 
+    <dimen name="size10">10sp</dimen>
     <dimen name="size12">12sp</dimen>
+    <dimen name="size13">13sp</dimen>
     <dimen name="size15">15sp</dimen>
     <dimen name="size16">16sp</dimen>
     <dimen name="size17">17sp</dimen>

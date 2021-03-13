@@ -9,5 +9,19 @@
         android:id="@+id/newsHomeFragment"
         android:name="com.augusto.mesanews.cleanarchitecture.presentation.news.NewsHomeFragment"
         android:label="fragment_news_home"
-        tools:layout="@layout/fragment_news_home" />
+        tools:layout="@layout/fragment_news_home" >
+        <action
+            android:id="@+id/toViewer"
+            app:destination="@id/newsViewerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newsViewerFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.news.NewsViewerFragment"
+        android:label="fragment_news_viewer"
+        tools:layout="@layout/fragment_news_viewer" >
+        <argument
+            app:argType="com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsPresentation"
+            android:name="news"/>
+    </fragment>
 </navigation>
