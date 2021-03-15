@@ -16,7 +16,6 @@ class HighlightAdapter(
 
     inner class HighlightAdapterHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val contentNews = itemView.findViewById<View>(R.id.content_news)
         private val icFavorite = itemView.findViewById<ImageView>(R.id.ic_favorite)
         private val image = itemView.findViewById<ImageView>(R.id.image)
         private val title = itemView.findViewById<TextView>(R.id.title)
@@ -26,7 +25,10 @@ class HighlightAdapter(
         fun bind(news: NewsPresentation) {
             title.text = news.title
             date.text = news.date
-            contentNews.setOnClickListener {
+            image.setOnClickListener {
+                clickNews.invoke(news)
+            }
+            title.setOnClickListener {
                 clickNews.invoke(news)
             }
 
