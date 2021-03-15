@@ -12,11 +12,35 @@ class NewsRepositoryImpl(private val localDataSource: LocalDataSource, private v
         return localDataSource.favoriteNews(news)
     }
 
+    override suspend fun disfavor(news: News): Result<Boolean> {
+        return localDataSource.disfavorNews(news)
+    }
+
     override suspend fun get(currentPage: Int): Result<List<News>> {
-        return remoteDataSource.getNews(currentPage)
+        val result = remoteDataSource.getNews(currentPage)
+        if (result is Result.Success) {
+            return Result.Success(fillFavorite(result.data))
+        }
+        return result
     }
 
     override suspend fun getHighlights(): Result<List<News>> {
-        return remoteDataSource.getHighlights()
+        val result = remoteDataSource.getHighlights()
+        if (result is Result.Success) {
+            return Result.Success(fillFavorite(result.data))
+        }
+        return result
+    }
+
+    private suspend fun fillFavorite(news: List<News>): List<News> {
+        return news.map {
+            it.favorite = checkIsFavorite(it)
+            return@map it
+        }
+    }
+
+    private suspend fun checkIsFavorite(url: News): Boolean {
+        val result = localDataSource.isFavorite(url)
+        return result is Result.Success && result.data
     }
 }

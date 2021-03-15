@@ -3,15 +3,11 @@ package com.augusto.mesanews.cleanarchitecture.presentation.news
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.augusto.mesanews.cleanarchitecture.R
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseFragment
-import com.augusto.mesanews.cleanarchitecture.presentation.extensions.toast
 import com.augusto.mesanews.cleanarchitecture.presentation.news.adapter.HighlightAdapter
 import com.augusto.mesanews.cleanarchitecture.presentation.news.adapter.NewsAdapter
 import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsPresentation
@@ -22,9 +18,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
 
     private val _viewModel: NewsHomeViewModel by viewModel()
-    private val _newsAdapter: NewsAdapter = NewsAdapter(::viewNews)
+    private val _newsAdapter: NewsAdapter = NewsAdapter(::viewNews, ::favoriteNews)
     private lateinit var _navController: NavController
-    private val _highlightAdapter: HighlightAdapter = HighlightAdapter(::viewNews)
+    private val _highlightAdapter: HighlightAdapter = HighlightAdapter(::viewNews, ::favoriteNews)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,6 +48,13 @@ class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
         _viewModel.loading.observe(viewLifecycleOwner, {
             progress_bar.isVisible = it
         })
+
+        _viewModel.updatedNews.observe(viewLifecycleOwner, {
+            it?.let { newsPresentation ->
+                _newsAdapter.updateItem(newsPresentation)
+                _highlightAdapter.updateItem(newsPresentation)
+            }
+        })
     }
 
     private fun setupLists() {
@@ -77,4 +80,7 @@ class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
         )
     }
 
+    private fun favoriteNews(newsPresentation: NewsPresentation, favorite: Boolean) {
+        _viewModel.favoriteNews(newsPresentation, favorite)
+    }
 }

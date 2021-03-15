@@ -7,11 +7,24 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter<T : RecyclerView.ViewHolder?, U>(private val view: Int): RecyclerView.Adapter<T>() {
 
-    protected var list: List<U> = listOf()
+    protected var list: List<U> = mutableListOf()
 
     fun update(newList: List<U>) {
         list = newList
         notifyDataSetChanged()
+    }
+
+    fun updateItem(item: U) {
+        val index = list.indexOf(item)
+        if (index < 0) {
+            return
+        }
+
+        val newList = list.toMutableList()
+        newList.add(index, item)
+        list = newList
+
+        notifyItemChanged(index)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): T {

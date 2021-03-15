@@ -8,13 +8,14 @@ import java.util.*
     tableName = "favorite_news"
 )
 data class FavoriteNews(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
+    @PrimaryKey(autoGenerate = false)
+    var url: String,
     var title: String,
     var description: String,
     var content: String,
     var author: String,
     var publishedAt: Date,
-    var url: String,
-    var imageUrl: String
+    var highlight: Boolean,
+    var imageUrl: String,
+    var favorite: Boolean
 )

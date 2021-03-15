@@ -12,6 +12,9 @@ interface FavoriteNewsDao {
     @Query("SELECT * FROM favorite_news")
     suspend fun getAll(): List<FavoriteNews>
 
+    @Query("SELECT * FROM favorite_news WHERE url = :url")
+    suspend fun getByUrl(url: String): List<FavoriteNews>
+
     @Insert
     suspend fun save(favoriteNews: FavoriteNews)
 

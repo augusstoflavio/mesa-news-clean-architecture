@@ -9,6 +9,7 @@ val useCaseModule = module {
     single {
         UseCases(
             favoriteNews = FavoriteNews(get()),
+            disfavorNews = DisfavorNews(get()),
             getHighlights = GetHighlights(get()),
             getNews = GetNews(get()),
             signin = Signin(get()),
