@@ -27,6 +27,15 @@ abstract class BaseAdapter<T : RecyclerView.ViewHolder?, U>(private val view: In
         notifyItemChanged(index)
     }
 
+    fun insertItens(itens: List<U>) {
+        val initialIndex = itens.count()
+        val newList = list.toMutableList()
+        newList.addAll(itens)
+        list = newList
+
+        notifyItemRangeChanged(initialIndex, itens.count())
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): T {
         val v = LayoutInflater.from(parent.context)
                 .inflate(view, parent, false)

@@ -52,11 +52,7 @@ class NewsHomeViewModel(private val useCases: UseCases): BaseViewModel() {
                     val newList = response.data.map {
                         NewsToPresentation.converter(it)
                     }
-                    var currentList = _news.value
-                    currentList = currentList!!.toMutableList()
-                    currentList.addAll(newList)
-                    _news.postValue(currentList!!)
-
+                    _news.postValue(newList)
                     _listNews.addAll(response.data)
 
                     _currentPage += 1

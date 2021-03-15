@@ -38,7 +38,7 @@ class NewsHomeFragment : BaseFragment(R.layout.fragment_news_home) {
 
     private fun setupObservers() {
         _viewModel.news.observe(viewLifecycleOwner, {
-            _newsAdapter.update(it)
+            _newsAdapter.insertItens(it)
         })
 
         _viewModel.highlights.observe(viewLifecycleOwner, {
