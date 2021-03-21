@@ -21,7 +21,7 @@ abstract class BaseAdapter<T : RecyclerView.ViewHolder?, U>(private val view: In
         }
 
         val newList = list.toMutableList()
-        newList.add(index, item)
+        newList[index] = item
         list = newList
 
         notifyItemChanged(index)
