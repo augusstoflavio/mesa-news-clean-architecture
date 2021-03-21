@@ -48,8 +48,15 @@ class NewsViewerFragment: BaseFragment(R.layout.fragment_news_viewer) {
         web_view.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                progress_bar.isVisible = false
+                if (progress_bar != null) {
+                    progress_bar.isVisible = false
+                }
             }
         }
+    }
+
+    override fun onStop() {
+        web_view.stopLoading()
+        super.onStop()
     }
 }
