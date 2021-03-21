@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.augusto.mesanews.core.domain.entity.Result
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 open class BaseViewModel: ViewModel() {
@@ -21,8 +22,8 @@ open class BaseViewModel: ViewModel() {
     protected fun run(
         call: suspend () -> Unit
     ) {
-        scope.launch {
-            loading.value = true
+        scope.launch(Dispatchers.IO) {
+            loading.postValue(true)
             try {
                 call()
             } catch (error: Throwable) {

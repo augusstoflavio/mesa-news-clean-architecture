@@ -13,7 +13,6 @@ import com.augusto.mesanews.cleanarchitecture.presentation.news.adapter.NewsAdap
 import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsPresentation
 import com.augusto.mesanews.cleanarchitecture.presentation.news.viewmodel.NewsHomeViewModel
 import kotlinx.android.synthetic.main.fragment_news_home.*
-import kotlinx.android.synthetic.main.toolbar_news.*
 import kotlinx.android.synthetic.main.toolbar_news.toolbar
 import kotlinx.android.synthetic.main.toolbar_news.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
