@@ -91,6 +91,6 @@ class NewsHomeViewModel(private val useCases: UseCases): BaseViewModel() {
     }
 
     private fun updateListNewsPresentation(news: NewsPresentation) {
-        _updatedNews.postValue(news)
+//        _updatedNews.postValue(news)
     }
 }
