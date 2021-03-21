@@ -6,6 +6,7 @@ data class UseCases (
         val getHighlights: GetHighlights,
         val getNews: GetNews,
         val favoriteNews: FavoriteNews,
+        val getFavoriteNews: GetFavoriteNews,
         val disfavorNews: DisfavorNews,
         val signin: Signin,
         val signup: Signup,

@@ -11,6 +11,7 @@ val useCaseModule = module {
             favoriteNews = FavoriteNews(get()),
             disfavorNews = DisfavorNews(get()),
             getHighlights = GetHighlights(get()),
+            getFavoriteNews = GetFavoriteNews(get()),
             getNews = GetNews(get()),
             signin = Signin(get()),
             signup = Signup(get()),

@@ -30,14 +30,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/ic_favorites_news"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_dehaze_24px" />
+                app:srcCompat="@drawable/ic_saved" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </Toolbar>
 </com.google.android.material.appbar.AppBarLayout>

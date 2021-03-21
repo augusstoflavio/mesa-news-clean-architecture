@@ -13,6 +13,9 @@
         <action
             android:id="@+id/toViewer"
             app:destination="@id/newsViewerFragment" />
+        <action
+            android:id="@+id/toFavorites"
+            app:destination="@id/favoriteNewsFragment" />
     </fragment>
 
     <fragment
@@ -23,5 +26,14 @@
         <argument
             app:argType="com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsPresentation"
             android:name="news"/>
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteNewsFragment"
+        android:name="com.augusto.mesanews.cleanarchitecture.presentation.news.FavoriteNewsFragment"
+        android:label="FavoriteNewsFragment" >
+
+        <action
+            android:id="@+id/toViewer"
+            app:destination="@id/newsViewerFragment" />
     </fragment>
 </navigation>

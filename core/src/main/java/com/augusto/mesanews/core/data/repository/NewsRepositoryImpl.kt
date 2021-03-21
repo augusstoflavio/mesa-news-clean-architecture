@@ -32,6 +32,14 @@ class NewsRepositoryImpl(private val localDataSource: LocalDataSource, private v
         return result
     }
 
+    override suspend fun getFavoriteNews(): Result<List<News>> {
+        val result = localDataSource.getFavoriteNews()
+        if (result is Result.Success) {
+            return Result.Success(fillFavorite(result.data))
+        }
+        return result
+    }
+
     private suspend fun fillFavorite(news: List<News>): List<News> {
         return news.map {
             it.favorite = checkIsFavorite(it)

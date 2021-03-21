@@ -11,4 +11,6 @@ interface NewsRepository {
     suspend fun get(currentPage: Int): Result<List<News>>
 
     suspend fun getHighlights(): Result<List<News>>
+
+    suspend fun getFavoriteNews(): Result<List<News>>
 }

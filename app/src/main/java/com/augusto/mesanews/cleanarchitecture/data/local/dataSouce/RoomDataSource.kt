@@ -7,7 +7,7 @@ import com.augusto.mesanews.core.data.dataSource.LocalDataSource
 import com.augusto.mesanews.core.domain.entity.News
 import com.augusto.mesanews.core.domain.entity.Result
 
-class RoomDataSource(val database: Database): LocalDataSource {
+class RoomDataSource(private val database: Database): LocalDataSource {
 
     override suspend fun favoriteNews(news: News): Result<Boolean> = safeQuery {
         database.favoriteNewsDao().save(
@@ -25,5 +25,11 @@ class RoomDataSource(val database: Database): LocalDataSource {
 
     override suspend fun isFavorite(news: News): Result<Boolean> = safeQuery {
         return@safeQuery database.favoriteNewsDao().getByUrl(news.url).isNotEmpty()
+    }
+
+    override suspend fun getFavoriteNews(): Result<List<News>> = safeQuery {
+        return@safeQuery database.favoriteNewsDao().getAll().map {
+            FavoriteNewsConverter.toNews(it)
+        }
     }
 }
