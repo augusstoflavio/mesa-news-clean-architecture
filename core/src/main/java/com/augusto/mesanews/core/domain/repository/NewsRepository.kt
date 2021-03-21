@@ -13,4 +13,6 @@ interface NewsRepository {
     suspend fun getHighlights(): Result<List<News>>
 
     suspend fun getFavoriteNews(): Result<List<News>>
+
+    suspend fun checkIsFavorite(url: News): Result<Boolean>
 }
