@@ -51,6 +51,6 @@ class FavoriteNewsFragment : BaseFragment(R.layout.fragment_favorite_news) {
     }
 
     private fun favoriteNews(newsPresentation: NewsPresentation, favorite: Boolean) {
-//        _viewModel.favoriteNews(newsPresentation, favorite)
+        _viewModel.disfavorNews(newsPresentation)
     }
 }
