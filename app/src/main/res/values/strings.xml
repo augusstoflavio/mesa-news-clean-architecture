@@ -1,39 +1,21 @@
 <resources>
     <string name="app_name">Mesa news</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo">Logo</string>
     <string name="News">News</string>
-    <string name="log_in_with_facebook">Entrar com o facebook</string>
-    <string name="log_in_with_email">Entrar com e-mail</string>
-    <string name="dont_have_an_account_register">Não tenho conta. Cadastrar</string>
+    <string name="log_in_with_email">Sign in with email</string>
+    <string name="dont_have_an_account_register">I don\'t have an account. Sign Up</string>
     <string name="toolbar_back">Toolbar back</string>
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="password_confirmation">Password confirmation</string>
-    <string name="birthdate">Data de nascimento</string>
-    <string name="register">Cadastrar</string>
-    <string name="name">Nome</string>
-    <string name="action_sign_up">Cadastrar</string>
-    <string name="invalid_name">Nome inválido</string>
-    <string name="signup_success">Cadastro realizado</string>
-    <string name="title_activity_news">NewsActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
-    <string name="highlights">Destaque</string>
-    <string name="latest_news">Últimas notícias</string>
-    <string name="title_favorites">Favoritos</string>
+    <string name="register">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="action_sign_up">Sign Up</string>
+    <string name="invalid_name">Invalid name</string>
+    <string name="signup_success">Registration completed</string>
+    <string name="highlights">Highlights</string>
+    <string name="latest_news">Latest news</string>
+    <string name="title_favorites">Bookmarks</string>
 </resources>
