@@ -1,5 +1,6 @@
 package com.augusto.mesanews.cleanarchitecture.di
 
+import com.augusto.mesanews.cleanarchitecture.BuildConfig
 import com.augusto.mesanews.cleanarchitecture.data.api.adapter.DateAdapter
 import com.augusto.mesanews.cleanarchitecture.data.api.interceptor.CheckConnectionInterceptor
 import com.augusto.mesanews.cleanarchitecture.data.api.interceptor.CheckResponseInterceptor
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit
 
 
 private const val TIMEOUT = 120L
-private const val BASE_URL = "https://mesa-news-api.herokuapp.com/v1/"
+private const val BASE_URL = BuildConfig.API_URL
 private val RETROFIT = StringQualifier("retrofit")
 private val MOSHI = StringQualifier("moshi")
 private val CLIENT = StringQualifier("client")
