@@ -12,6 +12,7 @@
     <style name="BaseInput">
         <item name="android:layout_height">@dimen/spacing48</item>
         <item name="android:background">@drawable/bg_grey_input</item>
+        <item name="android:padding">@dimen/spacing10</item>
     </style>
 
     <style name="BaseLabelInput">
