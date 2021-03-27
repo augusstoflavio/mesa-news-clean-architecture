@@ -6,9 +6,9 @@ Aplicativo que possibilita que usuários autenticados visualizem notícias em um
 
 #### Arquitetura
 
-O aplicativo foi desenvolvido aplicando a filosofia da arquitetura limpa, onde a aplicação é divida em camadas, onde o acesso é feito das camadas externas para as camadas internas e uma camada é desacoplada da outra com objetivo de gerar um código facilmente testável, reutilizável e com uma regra de negócio independente de tecnologia.
+O aplicativo foi desenvolvido aplicando a filosofia da arquitetura limpa, onde a aplicação é divida em camadas e o acesso é feito das camadas externas para as camadas internas e uma camada é desacoplada da outra com objetivo de gerar um código facilmente testável, reutilizável e com uma regra de negócio independente de tecnologia.
 
-Estruturalmente os arquivos foram divididos em dois módulos, app e core, a principal diferença entre eles é que o módulo core é totalmente independente de tecnologia e de qualquer coisa que seja considerado um detalhe para a aplicação (web, banco de dados, ui ...), o módulo app conhece o core, o contrário não acontece:
+Estruturalmente os arquivos foram divididos em dois módulos, app e core, a principal diferença entre eles é que o módulo core é totalmente independente de tecnologia e de qualquer coisa que seja considerada um detalhe para a aplicação (web, banco de dados, ui ...), o módulo app conhece o core, o contrário não acontece:
 
 
 - app
