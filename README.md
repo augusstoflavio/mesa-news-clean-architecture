@@ -28,6 +28,7 @@ Estruturalmente os arquivos foram divididos em dois módulos, app e core, a prin
 		- repository
 		- useCase
 
+![Alt text](architecture.png)
 
 #### Bibliotecas utilizadas
 
