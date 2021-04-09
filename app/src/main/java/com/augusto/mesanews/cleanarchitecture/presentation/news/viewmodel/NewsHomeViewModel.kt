@@ -1,5 +1,6 @@
 package com.augusto.mesanews.cleanarchitecture.presentation.news.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.augusto.mesanews.cleanarchitecture.data.UseCases
@@ -8,8 +9,19 @@ import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.New
 import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsToPresentation
 import com.augusto.mesanews.core.domain.entity.News
 import com.augusto.mesanews.core.domain.entity.Result
+import com.augusto.mesanews.core.domain.useCase.DisfavorNews
+import com.augusto.mesanews.core.domain.useCase.FavoriteNews
+import com.augusto.mesanews.core.domain.useCase.GetHighlights
+import com.augusto.mesanews.core.domain.useCase.GetNews
+import kotlinx.coroutines.CoroutineDispatcher
 
-class NewsHomeViewModel(private val useCases: UseCases): BaseViewModel() {
+class NewsHomeViewModel(
+    private val getHighlightsUseCase: GetHighlights,
+    private val getNewsUseCase: GetNews,
+    private val favoriteNewsUseCase: FavoriteNews,
+    private val disfavorNewsUseCase: DisfavorNews,
+    private val defaultDispatcher: CoroutineDispatcher
+): BaseViewModel(defaultDispatcher) {
 
     private var _currentPage = 1
 
@@ -25,13 +37,9 @@ class NewsHomeViewModel(private val useCases: UseCases): BaseViewModel() {
 
     private val _listNews = mutableListOf<News>()
 
-    init {
-        _news.value = listOf()
-    }
-
     fun getHighlights() {
         run {
-            when (val response = useCases.getHighlights()) {
+            when (val response = getHighlightsUseCase()) {
                 is Result.Success -> {
                     _highlights.postValue(response.data.map {
                         NewsToPresentation.converter(it)
@@ -47,7 +55,7 @@ class NewsHomeViewModel(private val useCases: UseCases): BaseViewModel() {
 
     fun getNews() {
         run {
-            when (val response = useCases.getNews(_currentPage)) {
+            when (val response = getNewsUseCase(_currentPage)) {
                 is Result.Success -> {
                     val newList = response.data.map {
                         NewsToPresentation.converter(it)
@@ -73,9 +81,9 @@ class NewsHomeViewModel(private val useCases: UseCases): BaseViewModel() {
             news.favorite = favorite
 
             val response = if (favorite) {
-                useCases.favoriteNews(news)
+                favoriteNewsUseCase(news)
             } else {
-                useCases.disfavorNews(news)
+                disfavorNewsUseCase(news)
             }
 
             when (response) {

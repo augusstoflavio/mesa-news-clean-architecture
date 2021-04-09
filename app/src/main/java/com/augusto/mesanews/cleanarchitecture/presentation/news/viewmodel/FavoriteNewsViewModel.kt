@@ -8,8 +8,9 @@ import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.New
 import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsToPresentation
 import com.augusto.mesanews.core.domain.entity.News
 import com.augusto.mesanews.core.domain.entity.Result
+import kotlinx.coroutines.CoroutineDispatcher
 
-class FavoriteNewsViewModel(private val useCases: UseCases): BaseViewModel() {
+class FavoriteNewsViewModel(private val useCases: UseCases, private val defaultDispatcher: CoroutineDispatcher): BaseViewModel(defaultDispatcher) {
 
     private val _news = MutableLiveData<List<NewsPresentation>>()
     val news: LiveData<List<NewsPresentation>> = _news

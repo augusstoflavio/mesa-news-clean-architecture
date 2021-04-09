@@ -4,25 +4,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.augusto.mesanews.core.domain.entity.Result
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-open class BaseViewModel: ViewModel() {
+open class BaseViewModel(private val defaultDispatcher: CoroutineDispatcher): ViewModel() {
 
     private val scope = viewModelScope
 
-    val error = MutableLiveData<Result.Failure?>().apply {
-        value = null
-    }
+    val error = MutableLiveData<Result.Failure?>()
 
-    val loading = MutableLiveData<Boolean>().apply {
-        value = false
-    }
+    val loading = MutableLiveData<Boolean>()
 
     protected fun run(
         call: suspend () -> Unit
     ) {
-        scope.launch(Dispatchers.IO) {
+        scope.launch(defaultDispatcher) {
             loading.postValue(true)
             try {
                 call()

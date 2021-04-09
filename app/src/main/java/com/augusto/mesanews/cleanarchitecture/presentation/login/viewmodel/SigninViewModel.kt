@@ -9,8 +9,13 @@ import com.augusto.mesanews.cleanarchitecture.data.local.dataSouce.SharedPrefere
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.login.formstate.SigninFormState
 import com.augusto.mesanews.core.domain.entity.Result
+import kotlinx.coroutines.CoroutineDispatcher
 
-class SigninViewModel(private val sharedPreferencesDataSource: SharedPreferencesDataSource, private val useCases: UseCases) : BaseViewModel() {
+class SigninViewModel(
+    private val sharedPreferencesDataSource: SharedPreferencesDataSource,
+    private val useCases: UseCases,
+    private val defaultDispatcher: CoroutineDispatcher
+) : BaseViewModel(defaultDispatcher) {
 
     private val _loginForm = MutableLiveData<SigninFormState>()
     val signinFormState: LiveData<SigninFormState> = _loginForm

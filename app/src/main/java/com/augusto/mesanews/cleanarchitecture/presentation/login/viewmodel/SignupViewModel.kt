@@ -8,8 +8,9 @@ import com.augusto.mesanews.cleanarchitecture.data.UseCases
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.login.formstate.SignupFormState
 import com.augusto.mesanews.core.domain.entity.Result
+import kotlinx.coroutines.CoroutineDispatcher
 
-class SignupViewModel(private val useCases: UseCases) : BaseViewModel() {
+class SignupViewModel(private val useCases: UseCases, private val defaultDispatcher: CoroutineDispatcher) : BaseViewModel(defaultDispatcher) {
 
     private val _signupFormState= MutableLiveData<SignupFormState>()
     val signinFormState: LiveData<SignupFormState> = _signupFormState
