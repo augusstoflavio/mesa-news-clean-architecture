@@ -1,9 +1,7 @@
 package com.augusto.mesanews.cleanarchitecture.presentation.news.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.augusto.mesanews.cleanarchitecture.data.UseCases
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsPresentation
 import com.augusto.mesanews.cleanarchitecture.presentation.news.presentation.NewsToPresentation

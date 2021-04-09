@@ -43,6 +43,9 @@ class NewsHomeViewModelTest {
     @Mock
     private lateinit var errorObserver: Observer<Result.Failure?>
 
+    @Mock
+    private lateinit var loadingObserver: Observer<Boolean>
+
     @Test
     fun `when NewsViewModel getNews get success then set newsLiveDate`() {
         runBlocking {
@@ -87,12 +90,15 @@ class NewsHomeViewModelTest {
                 testDispatcher
             )
             viewModel.news.observeForever(newsObserver)
+            viewModel.loading.observeForever(loadingObserver)
 
             //act
             viewModel.getNews()
 
             //assert
             verify(newsObserver).onChanged(newsList.map { NewsToPresentation.converter(it) })
+            verify(loadingObserver).onChanged(true)
+            verify(loadingObserver).onChanged(false)
         }
     }
 
@@ -114,12 +120,15 @@ class NewsHomeViewModelTest {
                     testDispatcher
             )
             viewModel.error.observeForever(errorObserver)
+            viewModel.loading.observeForever(loadingObserver)
 
             //act
             viewModel.getNews()
 
             //assert
             verify(errorObserver).onChanged(Result.Failure(Result.Error("Mensagem", 1)))
+            verify(loadingObserver).onChanged(true)
+            verify(loadingObserver).onChanged(false)
         }
     }
 }
