@@ -41,10 +41,38 @@ class NewsHomeViewModelTest {
     private lateinit var newsObserver: Observer<List<NewsPresentation>>
 
     @Mock
+    private lateinit var highlightsObserver: Observer<List<NewsPresentation>>
+
+    @Mock
     private lateinit var errorObserver: Observer<Result.Failure?>
 
     @Mock
     private lateinit var loadingObserver: Observer<Boolean>
+
+    private var newsPresentationList = listOf(
+        News(
+            title = "Título",
+            description = "Description",
+            content = "asd",
+            author = "Author",
+            publishedAt = Date(),
+            highlight = false,
+            url = "http://www.url.com.br?id=1",
+            imageUrl = "http://www.url.com.br/imagens/1.png",
+            favorite = false
+        ),
+        News(
+            title = "Título 2",
+            description = "Description 2",
+            content = "asd 2",
+            author = "Author 2",
+            publishedAt = Date(),
+            highlight = false,
+            url = "http://www.url.com.br?id=2",
+            imageUrl = "http://www.url.com.br/imagens/2.png",
+            favorite = true
+        )
+    )
 
     @Test
     fun `when NewsViewModel getNews get success then set newsLiveDate`() {
@@ -52,43 +80,11 @@ class NewsHomeViewModelTest {
             //arrange
             val repository = Mockito.mock(NewsRepository::class.java)
 
-
-            val newsList = listOf(
-                    News(
-                            title = "Título",
-                            description = "Description",
-                            content = "asd",
-                            author = "Author",
-                            publishedAt = Date(),
-                            highlight = false,
-                            url = "http://www.url.com.br?id=1",
-                            imageUrl = "http://www.url.com.br/imagens/1.png",
-                            favorite = false
-                    ),
-                    News(
-                            title = "Título 2",
-                            description = "Description 2",
-                            content = "asd 2",
-                            author = "Author 2",
-                            publishedAt = Date(),
-                            highlight = false,
-                            url = "http://www.url.com.br?id=2",
-                            imageUrl = "http://www.url.com.br/imagens/2.png",
-                            favorite = true
-                    )
-            )
-
             Mockito.`when`(
                 repository.get(1)
-            ).thenReturn(Result.Success(newsList))
+            ).thenReturn(Result.Success(newsPresentationList))
 
-            viewModel = NewsHomeViewModel(
-                GetHighlights(repository),
-                GetNews(repository),
-                FavoriteNews(repository),
-                DisfavorNews(repository),
-                testDispatcher
-            )
+            viewModel = createViewModel(repository)
             viewModel.news.observeForever(newsObserver)
             viewModel.loading.observeForever(loadingObserver)
 
@@ -96,7 +92,7 @@ class NewsHomeViewModelTest {
             viewModel.getNews()
 
             //assert
-            verify(newsObserver).onChanged(newsList.map { NewsToPresentation.converter(it) })
+            verify(newsObserver).onChanged(newsPresentationList.map { NewsToPresentation.converter(it) })
             verify(loadingObserver).onChanged(true)
             verify(loadingObserver).onChanged(false)
         }
@@ -112,13 +108,7 @@ class NewsHomeViewModelTest {
                     repository.get(1)
             ).thenReturn(Result.Failure(Result.Error("Mensagem", 1)))
 
-            viewModel = NewsHomeViewModel(
-                    GetHighlights(repository),
-                    GetNews(repository),
-                    FavoriteNews(repository),
-                    DisfavorNews(repository),
-                    testDispatcher
-            )
+            viewModel = createViewModel(repository)
             viewModel.error.observeForever(errorObserver)
             viewModel.loading.observeForever(loadingObserver)
 
@@ -131,4 +121,61 @@ class NewsHomeViewModelTest {
             verify(loadingObserver).onChanged(false)
         }
     }
+
+    @Test
+    fun `when NewsViewModel getHighlights get success then set newsLiveDate`() {
+        runBlocking {
+            //arrange
+            val repository = Mockito.mock(NewsRepository::class.java)
+
+            Mockito.`when`(
+                repository.getHighlights()
+            ).thenReturn(Result.Success(newsPresentationList))
+
+            viewModel = createViewModel(repository)
+            viewModel.highlights.observeForever(highlightsObserver)
+            viewModel.loading.observeForever(loadingObserver)
+
+            //act
+            viewModel.getHighlights()
+
+            //assert
+            verify(highlightsObserver).onChanged(newsPresentationList.map { NewsToPresentation.converter(it) })
+            verify(loadingObserver).onChanged(true)
+            verify(loadingObserver).onChanged(false)
+        }
+    }
+
+    @Test
+    fun `when NewsViewModel getHighlights get error then set error`() {
+        runBlockingTest {
+            //arrange
+            val repository = Mockito.mock(NewsRepository::class.java)
+
+            Mockito.`when`(
+                repository.getHighlights()
+            ).thenReturn(Result.Failure(Result.Error("Mensagem", 1)))
+
+            viewModel = createViewModel(repository)
+            viewModel.error.observeForever(errorObserver)
+            viewModel.loading.observeForever(loadingObserver)
+
+            //act
+            viewModel.getHighlights()
+
+            //assert
+            verify(errorObserver).onChanged(Result.Failure(Result.Error("Mensagem", 1)))
+            verify(loadingObserver).onChanged(true)
+            verify(loadingObserver).onChanged(false)
+        }
+    }
+
+    private fun createViewModel(repository: NewsRepository) =
+        NewsHomeViewModel(
+            GetHighlights(repository),
+            GetNews(repository),
+            FavoriteNews(repository),
+            DisfavorNews(repository),
+            testDispatcher
+        )
 }
