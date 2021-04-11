@@ -36,6 +36,6 @@ val viewModelModule = module {
     }
 
     viewModel {
-        FavoriteNewsViewModel(get(), Dispatchers.IO)
+        FavoriteNewsViewModel(GetFavoriteNews(get()), DisfavorNews(get()), Dispatchers.IO)
     }
 }

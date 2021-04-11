@@ -27,6 +27,7 @@ class FavoriteNewsFragment : BaseFragment(R.layout.fragment_favorite_news) {
         setupObservers()
         setupList()
         initToolbar(R.string.title_favorites)
+        _viewModel.getFavorites()
     }
 
     private fun setupList() {
