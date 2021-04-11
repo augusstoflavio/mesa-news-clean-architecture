@@ -1,5 +1,6 @@
 package com.augusto.mesanews.cleanarchitecture.di
 
+import com.augusto.mesanews.cleanarchitecture.data.validator.EmailValidatorImpl
 import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.LoginHomeViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.SigninViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.SignupViewModel
@@ -16,7 +17,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
 
     viewModel {
-        SigninViewModel(get(), get(), Dispatchers.IO)
+        SigninViewModel(get(), get(), EmailValidatorImpl(), Dispatchers.IO)
     }
 
     viewModel {

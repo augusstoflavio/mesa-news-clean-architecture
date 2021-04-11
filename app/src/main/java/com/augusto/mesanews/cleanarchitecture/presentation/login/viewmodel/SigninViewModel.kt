@@ -1,19 +1,20 @@
 package com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel
 
-import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.augusto.mesanews.cleanarchitecture.R
-import com.augusto.mesanews.cleanarchitecture.data.UseCases
 import com.augusto.mesanews.cleanarchitecture.data.local.dataSouce.SharedPreferencesDataSource
+import com.augusto.mesanews.cleanarchitecture.data.validator.EmailValidator
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.login.formstate.SigninFormState
 import com.augusto.mesanews.core.domain.entity.Result
+import com.augusto.mesanews.core.domain.useCase.Signin
 import kotlinx.coroutines.CoroutineDispatcher
 
 class SigninViewModel(
     private val sharedPreferencesDataSource: SharedPreferencesDataSource,
-    private val useCases: UseCases,
+    private val signin: Signin,
+    private val emailValidator: EmailValidator,
     private val defaultDispatcher: CoroutineDispatcher
 ) : BaseViewModel(defaultDispatcher) {
 
@@ -29,7 +30,7 @@ class SigninViewModel(
         }
 
         run {
-            when (val response = useCases.signin(username, password)) {
+            when (val response = signin(username, password)) {
                 is Result.Success -> {
                     sharedPreferencesDataSource.saveUser(username, response.data)
                     _loginResult.postValue(true)
@@ -43,7 +44,7 @@ class SigninViewModel(
     }
 
     private fun loginDataChanged(username: String, password: String): Boolean {
-        if (!isUserNameValid(username)) {
+        if (!emailValidator.isValid(username)) {
             _loginForm.value = SigninFormState(usernameError = R.string.invalid_username)
             return false
         } else if (!isPasswordValid(password)) {
@@ -52,15 +53,6 @@ class SigninViewModel(
         }
 
         return true
-    }
-
-    // A placeholder username validation check
-    private fun isUserNameValid(username: String): Boolean {
-        return if (username.contains('@')) {
-            Patterns.EMAIL_ADDRESS.matcher(username).matches()
-        } else {
-            username.isNotBlank()
-        }
     }
 
     // A placeholder password validation check
