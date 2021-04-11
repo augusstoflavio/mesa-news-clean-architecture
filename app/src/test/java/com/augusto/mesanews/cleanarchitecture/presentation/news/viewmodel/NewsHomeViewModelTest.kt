@@ -49,6 +49,9 @@ class NewsHomeViewModelTest {
     @Mock
     private lateinit var loadingObserver: Observer<Boolean>
 
+    @Mock
+    private lateinit var updateNewsObserver: Observer<NewsPresentation?>
+
     private var newsPresentationList = listOf(
         News(
             title = "Título",
@@ -167,6 +170,113 @@ class NewsHomeViewModelTest {
             verify(errorObserver).onChanged(Result.Failure(Result.Error("Mensagem", 1)))
             verify(loadingObserver).onChanged(true)
             verify(loadingObserver).onChanged(false)
+        }
+    }
+
+    @Test
+    fun `when NewsViewModel favoriteNews favorite return success`() {
+        testFavoriteNewsReturnSucess(true)
+    }
+
+    @Test
+    fun `when NewsViewModel favoriteNews disfavor return success`() {
+        testFavoriteNewsReturnSucess(false)
+    }
+
+    @Test
+    fun `when NewsViewModel favoriteNews favorite return error`() {
+        testFavoriteNewsReturnError(true)
+    }
+
+    @Test
+    fun `when NewsViewModel favoriteNews disfavor return error`() {
+        testFavoriteNewsReturnError(false)
+    }
+
+    private fun testFavoriteNewsReturnSucess(favorite: Boolean) {
+        runBlockingTest {
+            val news = News(
+                    title = "Título",
+                    description = "Description",
+                    content = "asd",
+                    author = "Author",
+                    publishedAt = Date(),
+                    highlight = false,
+                    url = "http://www.url.com.br?id=1",
+                    imageUrl = "http://www.url.com.br/imagens/1.png",
+                    favorite = !favorite
+            )
+
+            //arrange
+            val repository = Mockito.mock(NewsRepository::class.java)
+
+            Mockito.`when`(
+                    repository.get(1)
+            ).thenReturn(Result.Success(listOf(news)))
+
+            Mockito.`when`(
+                    repository.favorite(news)
+            ).thenReturn(Result.Success(true))
+
+            Mockito.`when`(
+                    repository.disfavor(news)
+            ).thenReturn(Result.Success(true))
+
+            viewModel = createViewModel(repository)
+            viewModel.updatedNews.observeForever(updateNewsObserver)
+
+            //act
+            viewModel.getNews()
+            viewModel.favoriteNews(NewsToPresentation.converter(news), favorite)
+
+            news.favorite = !favorite
+
+            //assert
+            verify(updateNewsObserver).onChanged(NewsToPresentation.converter(news))
+        }
+    }
+
+    private fun testFavoriteNewsReturnError(favorite: Boolean) {
+        runBlockingTest {
+            val news = News(
+                    title = "Título",
+                    description = "Description",
+                    content = "asd",
+                    author = "Author",
+                    publishedAt = Date(),
+                    highlight = false,
+                    url = "http://www.url.com.br?id=1",
+                    imageUrl = "http://www.url.com.br/imagens/1.png",
+                    favorite = !favorite
+            )
+
+            //arrange
+            val repository = Mockito.mock(NewsRepository::class.java)
+            val erroReturn = Result.Failure(Result.Error("Erro", 1))
+
+            Mockito.`when`(
+                    repository.get(1)
+            ).thenReturn(Result.Success(listOf(news)))
+
+            Mockito.`when`(
+                    repository.favorite(news)
+            ).thenReturn(erroReturn)
+
+            Mockito.`when`(
+                    repository.disfavor(news)
+            ).thenReturn(erroReturn)
+
+            viewModel = createViewModel(repository)
+            viewModel.updatedNews.observeForever(updateNewsObserver)
+            viewModel.error.observeForever(errorObserver)
+
+            //act
+            viewModel.getNews()
+            viewModel.favoriteNews(NewsToPresentation.converter(news), favorite)
+
+            //assert
+            verify(updateNewsObserver).onChanged(NewsToPresentation.converter(news))
+            verify(errorObserver).onChanged(erroReturn)
         }
     }
 
