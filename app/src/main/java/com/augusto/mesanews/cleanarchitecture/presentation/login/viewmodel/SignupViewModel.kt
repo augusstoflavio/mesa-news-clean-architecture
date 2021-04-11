@@ -1,16 +1,20 @@
 package com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel
 
-import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.augusto.mesanews.cleanarchitecture.R
-import com.augusto.mesanews.cleanarchitecture.data.UseCases
+import com.augusto.mesanews.cleanarchitecture.data.validator.EmailValidator
 import com.augusto.mesanews.cleanarchitecture.presentation.bases.BaseViewModel
 import com.augusto.mesanews.cleanarchitecture.presentation.login.formstate.SignupFormState
 import com.augusto.mesanews.core.domain.entity.Result
+import com.augusto.mesanews.core.domain.useCase.Signup
 import kotlinx.coroutines.CoroutineDispatcher
 
-class SignupViewModel(private val useCases: UseCases, private val defaultDispatcher: CoroutineDispatcher) : BaseViewModel(defaultDispatcher) {
+class SignupViewModel(
+        private val signupUseCase: Signup,
+        private val emailValidator: EmailValidator,
+        private val defaultDispatcher: CoroutineDispatcher
+) : BaseViewModel(defaultDispatcher) {
 
     private val _signupFormState= MutableLiveData<SignupFormState>()
     val signinFormState: LiveData<SignupFormState> = _signupFormState
@@ -24,7 +28,7 @@ class SignupViewModel(private val useCases: UseCases, private val defaultDispatc
         }
 
         run {
-            when (val response = useCases.signup(name, username, password)) {
+            when (val response = signupUseCase(name, username, password)) {
                 is Result.Success -> {
                     _signupResult.postValue(true)
                 }
@@ -40,7 +44,7 @@ class SignupViewModel(private val useCases: UseCases, private val defaultDispatc
         if (name.isEmpty()) {
             _signupFormState.value = SignupFormState(nameError = R.string.invalid_name)
             return false
-        } else if (!isUserNameValid(username)) {
+        } else if (!emailValidator.isValid(username)) {
             _signupFormState.value = SignupFormState(usernameError = R.string.invalid_username)
             return false
         } else if (!isPasswordValid(password)) {
@@ -49,15 +53,6 @@ class SignupViewModel(private val useCases: UseCases, private val defaultDispatc
         }
 
         return true
-    }
-
-    // A placeholder username validation check
-    private fun isUserNameValid(username: String): Boolean {
-        return if (username.contains('@')) {
-            Patterns.EMAIL_ADDRESS.matcher(username).matches()
-        } else {
-            username.isNotBlank()
-        }
     }
 
     // A placeholder password validation check
