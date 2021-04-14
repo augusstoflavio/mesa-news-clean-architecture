@@ -22,7 +22,6 @@ class App: Application() {
             modules(
                 listOf(
                     dataModule,
-                    useCaseModule,
                     apiModule,
                     viewModelModule
                 )
