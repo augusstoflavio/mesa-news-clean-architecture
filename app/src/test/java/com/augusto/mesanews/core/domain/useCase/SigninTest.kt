@@ -30,11 +30,11 @@ class SigninTest {
             val authRepository = Mockito.mock(AuthRepository::class.java)
             val signin = Signin(authRepository)
             Mockito.`when`(
-                    authRepository.signin("Augusto Flávio Mendonça", "123456")
+                    authRepository.signin("augusto.flaviom@gmail.com", "123456")
             ).thenReturn(returnSigninRepository)
 
             //act
-            val returnSignin = signin.invoke("Augusto Flávio Mendonça", "123456")
+            val returnSignin = signin.invoke("augusto.flaviom@gmail.com", "123456")
 
             //assert
             Assert.assertEquals(returnSigninRepository, returnSignin)
