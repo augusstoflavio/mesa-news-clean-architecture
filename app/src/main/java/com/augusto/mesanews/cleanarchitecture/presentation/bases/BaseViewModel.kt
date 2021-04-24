@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.augusto.mesanews.core.domain.entity.Result
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 open class BaseViewModel(private val defaultDispatcher: CoroutineDispatcher): ViewModel() {
@@ -14,7 +13,7 @@ open class BaseViewModel(private val defaultDispatcher: CoroutineDispatcher): Vi
 
     val error = MutableLiveData<Result.Failure?>()
 
-    val loading = MutableLiveData(false)
+    val loading = MutableLiveData<Boolean>()
 
     protected fun run(
         call: suspend () -> Unit
