@@ -23,7 +23,8 @@ class App: Application() {
                 listOf(
                     dataModule,
                     apiModule,
-                    viewModelModule
+                    viewModelModule,
+                    useCaseModule
                 )
             )
         }

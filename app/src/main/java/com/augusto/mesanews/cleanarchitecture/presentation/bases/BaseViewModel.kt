@@ -14,7 +14,7 @@ open class BaseViewModel(private val defaultDispatcher: CoroutineDispatcher): Vi
 
     val error = MutableLiveData<Result.Failure?>()
 
-    val loading = MutableLiveData<Boolean>()
+    val loading = MutableLiveData(false)
 
     protected fun run(
         call: suspend () -> Unit
