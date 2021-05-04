@@ -51,7 +51,7 @@ class SigninFragmentTest: KoinTest {
 
     @After
     fun tearDown() {
-//        unloadKoinModules(mockedModule)
+        unloadKoinModules(mockedModule)
     }
 
     @Test
