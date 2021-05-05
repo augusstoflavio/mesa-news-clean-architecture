@@ -12,17 +12,21 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import com.augusto.mesanews.cleanarchitecture.R
+import com.augusto.mesanews.cleanarchitecture.data.validator.EmailValidatorImpl
+import com.augusto.mesanews.cleanarchitecture.presentation.login.viewmodel.SigninViewModel
 import com.augusto.mesanews.core.domain.entity.Result
 import com.augusto.mesanews.core.domain.repository.AuthRepository
+import com.augusto.mesanews.core.domain.useCase.Signin
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.core.context.loadKoinModules
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.unloadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -30,7 +34,7 @@ import org.koin.test.KoinTest
 import org.mockito.Mockito
 
 
-@RunWith(AndroidJUnit4ClassRunner::class)
+@RunWith(AndroidJUnit4::class)
 @ExperimentalCoroutinesApi
 @LargeTest
 class SigninFragmentTest: KoinTest {
@@ -41,12 +45,19 @@ class SigninFragmentTest: KoinTest {
 
     @Before
     fun setup() {
+        val application = InstrumentationRegistry.getInstrumentation()
+            .targetContext.applicationContext as KoinTestApp
+
         authRepository = Mockito.mock(AuthRepository::class.java)
+
         mockedModule = module {
-            single(override = true) { authRepository }
+            viewModel { SigninViewModel(get(), Signin(authRepository), EmailValidatorImpl(), Dispatchers.IO) }
         }
 
-        loadKoinModules(mockedModule)
+        application.injectModule(mockedModule)
+
+        val fragmentArgs = bundleOf()
+        fragment = launchFragmentInContainer(fragmentArgs, R.style.Theme_AppCompat_Light_NoActionBar)
     }
 
     @After
@@ -56,9 +67,6 @@ class SigninFragmentTest: KoinTest {
 
     @Test
     fun checkIfShowToastError() {
-        val fragmentArgs = bundleOf()
-        fragment = launchFragmentInContainer<SigninFragment>(fragmentArgs, R.style.Theme_AppCompat_Light_NoActionBar)
-
         val errorReturn = Result.Failure(Result.Error("Login inválido", 1))
 
         Mockito.`when`(
@@ -76,9 +84,6 @@ class SigninFragmentTest: KoinTest {
 
     @Test
     fun checkIfShowPasswordError() {
-        val fragmentArgs = bundleOf()
-        fragment = launchFragmentInContainer<SigninFragment>(fragmentArgs, R.style.Theme_AppCompat_Light_NoActionBar)
-
         val context = ApplicationProvider.getApplicationContext<Context>()
         val msgError = context.resources.getString(R.string.invalid_password)
 
@@ -90,9 +95,6 @@ class SigninFragmentTest: KoinTest {
 
     @Test
     fun checkIfShowUserError() {
-        val fragmentArgs = bundleOf()
-        fragment = launchFragmentInContainer<SigninFragment>(fragmentArgs, R.style.Theme_AppCompat_Light_NoActionBar)
-
         val context = ApplicationProvider.getApplicationContext<Context>()
         val msgError = context.resources.getString(R.string.invalid_username)
 

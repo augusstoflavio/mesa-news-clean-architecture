@@ -20,6 +20,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "API_URL", "\"https://mesa-news-api.herokuapp.com/v1/\"")
+
+        testInstrumentationRunner "com.augusto.mesanews.cleanarchitecture.presentation.login.fragment.KoinTestRunner"
     }
 
     buildTypes {
