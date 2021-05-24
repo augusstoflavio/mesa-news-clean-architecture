@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.augusto.mesanews.cleanarchitecture.data.local.dataSouce.SharedPreferencesDataSource
 
+
 class LoginHomeViewModel(private val sharedPreferencesDataSource: SharedPreferencesDataSource): ViewModel() {
 
     private val _isLogged = MutableLiveData<Boolean>()
