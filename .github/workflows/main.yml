@@ -29,6 +29,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Make gradlew executable
-        run: chmod +x ./gradlew
+        run: chmod +x ./../../gradlew
       - name: Run tests
         run: bash ./gradlew test --stacktrace
