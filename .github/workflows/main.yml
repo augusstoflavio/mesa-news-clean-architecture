@@ -28,5 +28,5 @@ jobs:
           java-version: 1.8
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Run tests
         run: bash ./gradlew test --stacktrace
