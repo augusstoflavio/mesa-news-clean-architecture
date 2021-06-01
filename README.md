@@ -36,3 +36,10 @@ Estruturalmente os arquivos foram divididos em dois módulos, app e core, a prin
 - [retrofit](https://square.github.io/retrofit/)
 - [navigation](https://developer.android.com/guide/navigation)
 
+### Autor
+---
+
+<sub><b>Augusto Flávio</b></sub>
+
+[![Linkedin Badge](https://img.shields.io/badge/-Augusto-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/augusto-flávio-mendonça-07477b60/)](https://www.linkedin.com/in/augusto-flávio-mendonça-07477b60/) 
+[![Gmail Badge](https://img.shields.io/badge/augusto.flaviom@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:augusto.flaviom@gmail.com)](mailto:augusto.flaviom@gmail.com)
