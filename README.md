@@ -1,8 +1,8 @@
 # Mesa News - Clean Architecture
 
-#### Descrição
+## Aplicativo que possibilita que usuários autenticados visualizem notícias em uma lista infinita, com separação dos destaques em um carrocel que fica no topo. Também é possível favoritar as notícias e visualizá-las em um webview. O usuário que não tiver cadastro poderá se cadastrar no app.
 
-Aplicativo que possibilita que usuários autenticados visualizem notícias em uma lista infinita, com separação dos destaques em um carrocel que fica no topo. Também é possível favoritar as notícias e visualizá-las em um webview. O usuário que não tiver cadastro poderá se cadastrar no app.
+<img src="https://img.shields.io/github/v/release/augusstoflavio/mesa-news-clean-architecture?style=flat-square" />
 
 #### Arquitetura
 
