@@ -4,7 +4,7 @@
 
 <img src="https://img.shields.io/github/v/release/augusstoflavio/mesa-news-clean-architecture?style=flat-square" />
 
-#### Arquitetura
+### Arquitetura
 
 O aplicativo foi desenvolvido aplicando a filosofia da arquitetura limpa, onde a aplicação é divida em camadas e o acesso é feito das camadas externas para as camadas internas e uma camada é desacoplada da outra com objetivo de gerar um código facilmente testável, reutilizável e com uma regra de negócio independente de tecnologia.
 
@@ -30,11 +30,9 @@ Estruturalmente os arquivos foram divididos em dois módulos, app e core, a prin
 
 ![Alt text](architecture.png)
 
-#### Bibliotecas utilizadas
+### 🛠 Tecnologias utilizadas
 
+- [koin](https://insert-koin.io/)
+- [retrofit](https://square.github.io/retrofit/)
+- [navigation](https://developer.android.com/guide/navigation)
 
-| Biblioteca        | Versão           |
-| ------------- |:-------------:|
-| koin      | 2.1.6 |
-| retrofit      | 2.9.0      |
-| navigation | 2.3.3      |
