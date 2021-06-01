@@ -37,7 +37,6 @@ Estruturalmente os arquivos foram divididos em dois módulos, app e core, a prin
 - [navigation](https://developer.android.com/guide/navigation)
 
 ### Autor
----
 
 <sub><b>Augusto Flávio</b></sub>
 
