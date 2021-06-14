@@ -36,6 +36,23 @@ Estruturalmente os arquivos foram divididos em dois módulos, app e core, a prin
 - [retrofit](https://square.github.io/retrofit/)
 - [navigation](https://developer.android.com/guide/navigation)
 
+### Telas
+
+![image](https://user-images.githubusercontent.com/5657650/121913336-b03a2d80-cd07-11eb-9c31-af4e021bdafd.png)
+
+![image](https://user-images.githubusercontent.com/5657650/121912795-402ba780-cd07-11eb-857b-df5742b85820.png)
+
+![image](https://user-images.githubusercontent.com/5657650/121912846-4ae63c80-cd07-11eb-83d3-538c5db5140e.png)
+
+![image](https://user-images.githubusercontent.com/5657650/121912968-62bdc080-cd07-11eb-9648-9835fb5775bd.png)
+
+![image](https://user-images.githubusercontent.com/5657650/121913098-79fcae00-cd07-11eb-8083-86a188d1692c.png)
+
+
+
+
+
+
 ### Autor
 
 <sub><b>Augusto Flávio</b></sub>
